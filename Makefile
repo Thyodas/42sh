@@ -59,12 +59,13 @@ clean:
 	   rm -f $(OBJ)
 
 fclean: clean
+		make fclean -C lib/my
 		rm -f $(NAME)
 
-tests_run:
+re: fclean all
+
+tests_run: re
 		cp ./mysh ./tests/mysh
 		cd ./tests && ./tester.sh
-
-re: fclean all
 
 .PHONY: fclean title all debug re clean tests_run make_lib $(NAME)
