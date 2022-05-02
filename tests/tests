@@ -232,3 +232,36 @@ CLEAN=""
 TESTS=
   echo "ls | cat | cat | cat | cat -e | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat -e | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat | cat "
 [924-END]
+
+[925]
+NAME="Minishell2 subject example"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls -l; ls -l | wc -l'
+[925-END]
+
+[926]
+NAME="Minishell2 subject example harder"
+SETUP=""
+CLEAN="rm -dfr test"
+TESTS=
+  echo 'mkdir test ; cd test ; ls -a ; ls | cat | wc -c > tutu ; cat tutu'
+[926-END]
+
+[927]
+NAME="Minishell2 bootstrap example"
+SETUP="PATH='/random'"
+CLEAN=""
+TESTS=
+  echo '/bin/ls -l /dev | /bin/grep tty | /bin/more'
+[927-END]
+
+[928]
+NAME="Redirect and pipe without spaces"
+SETUP=""
+CLEAN="rm rick"
+TESTS=
+  echo 'echo never    gonna    give you up>rick;echo never gonna let you down>>rick;cat<rick'
+[928-END]
+
