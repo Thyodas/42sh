@@ -28,7 +28,7 @@ SRC = src/main.c \
 
 OBJ = $(SRC:.c=.o)
 
-NAME = mysh
+NAME = 42sh
 
 INCLUDE = include
 
@@ -65,7 +65,7 @@ fclean: clean
 re: fclean all
 
 tests_run: re
-		cp ./mysh ./tests/mysh
+		cp ./42sh ./tests/42sh
 		cd ./tests && ./tester.sh
 
 .PHONY: fclean title all debug re clean tests_run make_lib $(NAME)
