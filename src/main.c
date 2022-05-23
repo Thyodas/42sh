@@ -14,9 +14,9 @@ static void my_shell_prompt(char **envp)
 {
     sig_handler();
     sh_data_t *data = init_shell_data(envp);
-    data->is_prompt_mode = true;
     if (data == NULL)
         exit(84);
+    data->is_prompt_mode = true;
     size_t len = 0;
     ssize_t lineSize = 0;
     while (1) {
