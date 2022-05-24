@@ -4,3 +4,9 @@
 *.o
 
 tests/mysh
+
+build.sh
+
+.gitignore
+
+42sh

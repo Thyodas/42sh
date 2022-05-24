@@ -48,6 +48,7 @@
     #define HEREDOC_TEMP_FILE "/tmp/mysh_heredoc.tmp"
 
     typedef struct {
+        char **vars;
         char **envp;
         char **line;
         char *old_pwd;
@@ -77,6 +78,8 @@
         {"cd", &builtin_cd},
         {"setenv", &builtin_setenv},
         {"unsetenv", &builtin_unsetenv},
+        {"set", &builtin_set},
+        {"unset", &builtin_unset},
         {"env", &builtin_env},
         {"exit", &builtin_exit}
     };

@@ -23,6 +23,7 @@ void close_current_pipe(sh_data_t *data);
 void close_other_pipe(sh_data_t *data);
 void reset_data(sh_data_t *data);
 int is_quote(int c);
+void var_substitute(sh_data_t *data);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -94,6 +95,7 @@ void parse_current_line(sh_data_t *data, char *line)
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
+    var_substitute(data);
     int len = 0;
     bool error = false;
     for (; data->line[len] != NULL; len++);

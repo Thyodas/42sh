@@ -5,6 +5,7 @@
 ** command
 */
 
+#include <signal.h>
 #include "shell.h"
 #include "my_list.h"
 #include "my.h"
