@@ -265,3 +265,11 @@ TESTS=
   echo 'echo never    gonna    give you up>rick;echo never gonna let you down>>rick;cat<rick'
 [928-END]
 
+[929]
+NAME="Variables"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a=at'
+  echo 'ls | c$a -e'
+[929-END]

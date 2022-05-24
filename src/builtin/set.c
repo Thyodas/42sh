@@ -28,26 +28,31 @@ void set_var_value(sh_data_t *data, char *name, char *value)
 
 int check_set(sh_data_t *data)
 {
-    if (data->current_command->argc > 3) {
-        my_fprintf(2, "set: Too many arguments.\n");
-        return (1);
-    }
-    char *str = data->current_command->argv[1];
-    if (('a' > str[0] || str[0] > 'z')
-    && ('A' > str[0] || str[0] > 'Z') && str[0] != '_') {
-        my_fprintf(2, "set: Variable name must begin with a letter.\n");
-        return (1);
-    }
-    if (my_strstr(str, "\t") != NULL) {
-        my_fprintf(2, "set: Variable name must contain \
-alphanumeric characters.\n");
-        return (1);
+    int error = 0;
+
+    for (int i = 1; data->current_command->argv[i] != NULL ; i++) {
+        char *str = data->current_command->argv[i];
+        if (('a' > str[0] || str[0] > 'z')
+        && ('A' > str[0] || str[0] > 'Z') && str[0] != '_') {
+            error == 0 ? my_fprintf(2, "set: Variable name must begin \
+with a letter.\n") : 0;
+            error = 1;
+            data->current_command->argv[i] = "";
+        }
+        if (my_strstr(str, "\t") != NULL) {
+            error == 0 ? my_fprintf(2, "set: Variable name must contain \
+alphanumeric characters.\n") : 0;
+            error = 1;
+            data->current_command->argv[i] = "";
+        }
     }
     return (0);
 }
 
 int builtin_set(sh_data_t *data)
 {
+    char *val;
+
     if (data->current_command->argc == 1) {
         for (int i = 0 ; data->vars[i] != NULL ; ++i)
             my_printf("%s\n", data->vars[i]);
@@ -56,10 +61,13 @@ int builtin_set(sh_data_t *data)
     int check = check_set(data);
     if (check)
         return (check);
-    if (data->current_command->argc == 2) {
-        set_var_value(data, data->current_command->argv[1], "");
-    } else
-        set_var_value(data, data->current_command->argv[1],
-            data->current_command->argv[2]);
+    for (int i = 1; data->current_command->argv[i] != NULL ; i++) {
+        if ((val = my_strstr(data->current_command->argv[i], "=")) != NULL) {
+            val[0] = '\0';
+            set_var_value(data, data->current_command->argv[i], &val[1]);
+        } else
+            set_var_value(data, data->current_command->argv[i], "");
+    }
+
     return (0);
 }
