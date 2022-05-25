@@ -26,7 +26,7 @@ void var_substitute(sh_data_t *data)
             }
             len = (my_strlen(data->line[i]) - my_strlen(variable) + my_strlen(value));
             new_cmd = malloc(sizeof(char) * (len + 1));
-            new_cmd[len] = '\0';
+            for (int j = 0; j < len; new_cmd[j] = 0, j++);
             my_strncpy(new_cmd, data->line[i], my_strlen(data->line[i]) - (my_strlen(variable)));
             my_strcat(new_cmd, value);
             free(data->line[i]);

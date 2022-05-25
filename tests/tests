@@ -266,10 +266,25 @@ TESTS=
 [928-END]
 
 [929]
-NAME="Variables"
+NAME="Variables first"
 SETUP=""
 CLEAN=""
 TESTS=
   echo 'set a=at'
   echo 'ls | c$a -e'
+  echo 'unset a'
 [929-END]
+
+[930]
+NAME="Variables with env"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cd /'
+  echo 'ls'
+  echo 'echo $PWD'
+  echo 'set PWD=jesuisunpwd'
+  echo 'echo $PWD'
+  echo 'unset PWD'
+  echo 'echo $PWD'
+[930-END]
