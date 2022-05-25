@@ -77,17 +77,20 @@ void check_execution(sh_data_t *data)
     if (data->current_command == NULL || data->current_command->argv == NULL
         || data->current_command->argv[0] == NULL)
         return;
-    if (execute_builtins(data))
-        return;
-    if (execute_all_path_commands(data))
-        return;
-    if (invalid_bin_access(data->current_command->argv[0])) {
-        data->last_exit_status = 1;
-        return;
-    }
-    if (can_execute_bin(data->current_command->argv[0])) {
-        execute_binary(data, data->current_command->argv[0]);
-        return;
+    if (my_strstr(data->current_command->argv[0], "/") == NULL) {
+        if (execute_builtins(data))
+            return;
+        if (execute_all_path_commands(data))
+            return;
+    } else {
+        if (invalid_bin_access(data->current_command->argv[0])) {
+            data->last_exit_status = 1;
+            return;
+        }
+        if (can_execute_bin(data->current_command->argv[0])) {
+            execute_binary(data, data->current_command->argv[0]);
+            return;
+        }
     }
     my_fprintf(2, "%s: Command not found.\n", data->current_command->argv[0]);
     data->last_exit_status = 1;

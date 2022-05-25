@@ -63,8 +63,6 @@ int execute_path_command(sh_data_t *data, char *path)
 
 int execute_all_path_commands(sh_data_t *data)
 {
-    if (my_strstr(data->current_command->argv[0], "/") != NULL)
-        return 0;
     char *env_path = get_env_value(data, "PATH");
     if (env_path == NULL)
         env_path = data->old_path;

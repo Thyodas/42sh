@@ -320,3 +320,20 @@ CLEAN=""
 TESTS=
   echo './wrong_archi'
 [935-END]
+
+[936]
+NAME="Exec a directory"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo '/usr'
+[936-END]
+
+[937]
+NAME="PATH 5"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='/random'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo './ls'
+  echo 'ls'
+[937-END]
