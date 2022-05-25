@@ -30,7 +30,11 @@ void execute_binary(sh_data_t *data, char *path)
         dup2(data->current_command->write_fd, 1);
         dup2(data->current_command->read_fd, 0);
         if (execve(path, data->current_command->argv, data->envp) == -1) {
-            perror(path);
+            if (errno == ENOEXEC)
+                my_fprintf(2, "%s: Exec format error. Wrong Architecture.\n",
+                            path);
+            else
+                perror(path);
             exit(1);
         }
         exit(0);
@@ -47,7 +51,7 @@ int execute_path_command(sh_data_t *data, char *path)
     my_strcpy(new_path, path);
     new_path[path_size] = '/';
     my_strcpy(new_path + path_size + 1, data->current_command->argv[0]);
-    new_path[path_size +  my_strlen(data->current_command->argv[0]) + 1] = '\0';
+    new_path[path_size + my_strlen(data->current_command->argv[0]) + 1] = '\0';
     if (can_execute_bin(new_path)) {
         execute_binary(data, new_path);
         free(new_path);
