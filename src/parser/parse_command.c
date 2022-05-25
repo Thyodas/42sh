@@ -22,7 +22,11 @@ int retrieve_io(sh_data_t *data);
 void close_current_pipe(sh_data_t *data);
 void close_other_pipe(sh_data_t *data);
 void reset_data(sh_data_t *data);
-int is_quote(int c);
+int handle_separators(sh_data_t *data, char **options, bool *error,
+                        const special_token_t *token_list);
+int check_if_separator(char *str);
+special_token_t get_io_token(const special_token_t *token_list, char *str);
+char *remove_quote(char *str);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -33,42 +37,25 @@ static const special_token_t TOKEN_LIST[] = {
     {NULL, 0, NULL}
 };
 
-special_token_t get_io_token(const special_token_t *token_list, char *str)
+static void fill_command_args(sh_data_t *data, char *str, int *i)
 {
-    int i = 0;
-
-    for (; token_list[i].size != 0; ++i)
-        if (my_strncmp(str, token_list[i].name, token_list[i].size) == 0)
-            return (token_list[i]);
-    return (token_list[i]);
+    str = remove_quote(str);
+    extend_array(&data->current_command->argv, str);
+    data->current_command->argc++;
+    *i = *i + 1;
 }
 
-static char *remove_quote(char *str)
-{
-    if (str == NULL)
-        return NULL;
-    int len = my_strlen(str);
-    if (len == 0 || !(str[0] == str[len - 1] && is_quote(str[0])))
-        return str;
-    char *new_str = malloc(sizeof(char) * len);
-    my_strcpy(new_str, &str[1]);
-    new_str[len - 2] = '\0';
-    free(str);
-    return new_str;
-}
-
-int parse_next_command(sh_data_t *data, char **line, bool *error)
+static int parse_next_command(sh_data_t *data, char **line, bool *error)
 {
     int i = 0;
     special_token_t io_token;
     data->current_command = malloc_command();
-    while (line[i] != NULL && my_strcmp(line[i], ";") != 0) {
+    while (line[i] != NULL) {
+        if (check_if_separator(line[i]))
+            return i;
         io_token = get_io_token(TOKEN_LIST, line[i]);
         if (io_token.size == 0) {
-            line[i] = remove_quote(line[i]);
-            extend_array(&data->current_command->argv, line[i]);
-            data->current_command->argc++;
-            ++i;
+            fill_command_args(data, line[i], &i);
             continue;
         }
         line[i + 1] = remove_quote(line[i + 1]);
@@ -77,7 +64,7 @@ int parse_next_command(sh_data_t *data, char **line, bool *error)
     return (i + 1);
 }
 
-void init_command_execution(sh_data_t *data)
+static void init_command_execution(sh_data_t *data)
 {
     reset_data(data);
     if (retrieve_io(data)) {
@@ -85,6 +72,24 @@ void init_command_execution(sh_data_t *data)
         return;
     }
     execute_command(data);
+}
+
+static void parse_command_and_exec(sh_data_t *data, int len)
+{
+    bool error = false;
+    for (int i = 0; i < len ;) {
+        if (check_if_separator(data->line[i])) {
+            i += handle_separators(data, &data->line[i], &error, TOKEN_LIST);
+            continue;
+        }
+        i += parse_next_command(data, &data->line[i], &error);
+        if (!error)
+            init_command_execution(data);
+        else {
+            error = false;
+            data->last_exit_status = 1;
+        }
+    }
 }
 
 void parse_current_line(sh_data_t *data, char *line)
@@ -95,15 +100,6 @@ void parse_current_line(sh_data_t *data, char *line)
     if (data->line == NULL || data->line[0] == NULL)
         return;
     int len = 0;
-    bool error = false;
     for (; data->line[len] != NULL; len++);
-    for (int i = 0; i < len ;) {
-        i += parse_next_command(data, &data->line[i], &error);
-        if (!error)
-            init_command_execution(data);
-        else {
-            error = false;
-            data->last_exit_status = 1;
-        }
-    }
+    parse_command_and_exec(data, len);
 }

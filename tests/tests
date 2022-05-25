@@ -265,3 +265,42 @@ TESTS=
   echo 'echo never    gonna    give you up>rick;echo never gonna let you down>>rick;cat<rick'
 [928-END]
 
+[929]
+NAME="Basic AND separator without error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls && echo "zizi"'
+[929-END]
+
+[930]
+NAME="Basic AND separator with error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls zizi && echo "zizi"'
+[930-END]
+
+[931]
+NAME="Basic OR separator without error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls || echo "zizi"'
+[931-END]
+
+[932]
+NAME="Basic OR separator with error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls zizi || echo "zizi"'
+[932-END]
+
+[933]
+NAME="Complex separators"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls && pwd; ls zizi && echo "zizi" || echo "nono"; ls || echo "tg Guillaume" || pwd'
+[933-END]

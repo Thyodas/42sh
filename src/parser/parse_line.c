@@ -24,7 +24,10 @@ static const special_token_t TOKEN_LIST[] = {
     {"<<", 2, NULL},
     {"<", 1, NULL},
     {";", 1, NULL},
+    {"||", 2, NULL},
     {"|", 1, NULL},
+    {";", 1, NULL},
+    {"&&", 2, NULL},
     {NULL, 0, NULL}
 };
 

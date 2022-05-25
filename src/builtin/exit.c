@@ -17,7 +17,7 @@ void default_shell_exit(void)
 int builtin_exit(sh_data_t *data)
 {
     if (data->current_command->argc > 2
-        || !my_str_isnum(data->current_command->argv[1])) {
+        && !my_str_isnum(data->current_command->argv[1])) {
         my_fprintf(2, "exit: Expression Syntax.");
         return (1);
     }
