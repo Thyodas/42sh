@@ -35,6 +35,12 @@
     // builtin/env.c
     int builtin_env(sh_data_t *data);
 
+    // builtin/where.c
+    int builtin_where(sh_data_t *data);
+
+    // builtin/which.c
+    int builtin_which(sh_data_t *data);
+
     /*
     Execution
     */
@@ -52,6 +58,7 @@
 
     // execution/command_error.c
     void binary_error(sh_data_t *data, int status);
+    bool can_execute_bin(char *path);
 
     // execution/builtin_utils.c
     builtin_t search_builtin(sh_data_t *data);

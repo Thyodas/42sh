@@ -337,3 +337,56 @@ TESTS=
   echo './ls'
   echo 'ls'
 [937-END]
+
+[938]
+NAME="Where builtin - valid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'where ls'
+  echo 'where bash'
+[938-END]
+
+[939]
+NAME="Where builtin - invalid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'where /ls'
+  echo 'where ls lss'
+  echo 'where bash bashhhh'
+[939-END]
+
+[940]
+NAME="Where builtin - special"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='.'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo 'where ls'
+[940-END]
+
+[941]
+NAME="Which builtin - valid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'which ls'
+  echo 'which bash'
+[941-END]
+
+[942]
+NAME="Which builtin - invalid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'which ls lss'
+  echo 'which bash bashhhh'
+[942-END]
+
+[943]
+NAME="Which builtin - special"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='.'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo 'which ls'
+[943-END]
