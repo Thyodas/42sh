@@ -24,7 +24,9 @@ SRC = src/main.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \
-	  src/parser/char_test.c
+	  src/parser/char_test.c \
+	  src/parser/separator_handlers.c \
+	  src/parser/parser_utils.c
 
 OBJ = $(SRC:.c=.o)
 
