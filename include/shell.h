@@ -57,6 +57,7 @@
     typedef struct {
         char **envp;
         char **line;
+        char **history;
         char *old_pwd;
         char *old_path;
         int last_exit_status;
