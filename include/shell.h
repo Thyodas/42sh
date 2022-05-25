@@ -45,6 +45,13 @@
         T_INPUT_PIPE
     };
 
+    enum {
+        T_NONE,
+        T_BASIC,
+        T_AND,
+        T_OR
+    };
+
     #define HEREDOC_TEMP_FILE "/tmp/mysh_heredoc.tmp"
 
     typedef struct {
