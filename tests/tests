@@ -312,3 +312,11 @@ CLEAN=""
 TESTS=
   echo 'bin/ls'
 [934-END]
+
+[935]
+NAME="binary not compatible"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo './wrong_archi'
+[935-END]
