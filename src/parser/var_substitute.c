@@ -20,8 +20,10 @@ void var_substitute(sh_data_t *data)
             value = get_var_value(data, &variable[1]);
             if (!value)
                 value = get_env_value(data, &variable[1]);
-            if (!value)
+            if (!value) {
                 my_fprintf(2, "%s: Undefined variable.\n", &variable[1]);
+                return;
+            }
             len = (my_strlen(data->line[i]) - my_strlen(variable) + my_strlen(value));
             new_cmd = malloc(sizeof(char) * (len + 1));
             new_cmd[len] = '\0';
