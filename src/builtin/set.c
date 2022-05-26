@@ -10,29 +10,37 @@
 
 void extend_array(char ***array, char *new_line);
 
+char *remove_line_spaces(sh_data_t *data, int *i)
+{
+    char *cmd;
+    if (data->current_command->argv[*i + 1] != NULL &&
+    data->current_command->argv[*i + 2] != NULL) {
+        if (my_strlen(data->current_command->argv[*i + 1]) == 1 &&
+        data->current_command->argv[*i + 1][0] == '=') {
+            int len = my_strlen(data->current_command->argv[*i]) +
+                my_strlen(data->current_command->argv[*i + 1]) +
+                my_strlen(data->current_command->argv[*i + 2]);
+            cmd = malloc(sizeof(char) * (len + 1));
+            for (int j = 0; j < len; cmd[j] = 0, j++);
+            cmd = my_strcat(cmd, data->current_command->argv[*i]);
+            cmd = my_strcat(cmd, data->current_command->argv[*i + 1]);
+            cmd = my_strcat(cmd, data->current_command->argv[*i + 2]);
+            *i += 2;
+        } else
+            cmd = my_strdup(data->current_command->argv[*i]);
+    } else
+        cmd = my_strdup(data->current_command->argv[*i]);
+    return (cmd);
+}
+
 char **handling_spaces(sh_data_t *data)
 {
     char **array = malloc(sizeof(char *));
-    array[0] = NULL;
     char *cmd;
-    int len;
 
+    array[0] = NULL;
     for (int i = 0; data->current_command->argv[i] != NULL; i++) {
-        if (data->current_command->argv[i + 1] != NULL &&
-        data->current_command->argv[i + 2] != NULL) {
-            if (my_strlen(data->current_command->argv[i + 1]) == 1 &&
-            data->current_command->argv[i + 1][0] == '=') {
-                len = my_strlen(data->current_command->argv[i]) + my_strlen(data->current_command->argv[i + 1]) + my_strlen(data->current_command->argv[i + 2]);
-                cmd = malloc(sizeof(char) * (len + 1));
-                for (int j = 0; j < len; cmd[j] = 0, j++);
-                cmd = my_strcat(cmd, data->current_command->argv[i]);
-                cmd = my_strcat(cmd, data->current_command->argv[i + 1]);
-                cmd = my_strcat(cmd, data->current_command->argv[i + 2]);
-                i += 2;
-            } else
-                cmd = my_strdup(data->current_command->argv[i]);
-        } else
-            cmd = my_strdup(data->current_command->argv[i]);
+        cmd = remove_line_spaces(data, &i);
         extend_array(&array, my_strdup(cmd));
         free(cmd);
     }
