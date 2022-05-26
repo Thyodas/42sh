@@ -32,9 +32,6 @@ static void my_shell_prompt(char **envp)
             continue;
         }
         parse_current_line(data, line);
-        extend_array(&data->history, line);
-        for (int i = 0; data->history[i] != NULL; i++)
-            printf("%s\n", data->history[i]);
         free(line);
     }
 }

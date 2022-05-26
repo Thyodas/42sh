@@ -92,15 +92,31 @@ static void parse_command_and_exec(sh_data_t *data, int len)
     }
 }
 
+char *history(char **line, int length, int len)
+{
+    char *dest = malloc(sizeof(char) * (length + len + 1));
+
+    for (int i = 0; line[i] != NULL; i++) {
+        dest = my_strcat(dest, line[i]);
+        dest = my_strcat(dest, " ");
+    }
+    return dest;
+}
+
 void parse_current_line(sh_data_t *data, char *line)
 {
+    char *last_command = my_strdup("");
+
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
-        //history
     int len = 0;
-    for (; data->line[len] != NULL; len++);
+    int length = 0;
+    for (; data->line[len] != NULL; len++)
+        for (int i = 0; data->line[len][i] != '\0'; i++, length++);
+    last_command = history(data->line, length, len);
+    extend_array(&data->history, last_command);
     parse_command_and_exec(data, len);
 }

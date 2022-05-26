@@ -86,7 +86,8 @@
         {"setenv", &builtin_setenv},
         {"unsetenv", &builtin_unsetenv},
         {"env", &builtin_env},
-        {"exit", &builtin_exit}
+        {"exit", &builtin_exit},
+        {"history", &builtin_history}
     };
 
     #define BUILTIN_NB (sizeof(BUILTIN_JUMP_TABLE) / sizeof(builtin_t))
