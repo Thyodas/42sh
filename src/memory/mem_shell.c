@@ -45,6 +45,8 @@ sh_data_t *init_shell_data(char **envp)
     sh_data_t *data = malloc(sizeof(sh_data_t));
     if (data == NULL)
         return (NULL);
+    data->vars = malloc(sizeof(char *) * 1);
+    data->vars[0] = NULL;
     data->envp = envp;
     data->envp = malloc_envp(data);
     data->old_pwd = my_strdup("");

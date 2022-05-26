@@ -390,3 +390,40 @@ CLEAN="PATH=$OLDPATH ; rm ls"
 TESTS=
   echo 'which ls'
 [943-END]
+
+[944]
+NAME="Variables first"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a=at'
+  echo 'ls | c$a -e'
+  echo 'unset a'
+[944-END]
+
+[945]
+NAME="Variables with env"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cd /'
+  echo 'ls'
+  echo 'echo $PWD'
+  echo 'set PWD=jesuisunpwd'
+  echo 'echo $PWD'
+  echo 'unset PWD'
+  echo 'echo $PWD'
+[945-END]
+
+[946]
+NAME="Variables with spaces"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a = b'
+  echo 'echo $a'
+  echo 'set a= b'
+  echo 'echo $a'
+  echo 'echo $b'
+  echo 'set a =b'
+[946-END]

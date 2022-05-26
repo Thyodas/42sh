@@ -27,6 +27,7 @@ int handle_separators(sh_data_t *data, char **options, bool *error,
 int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
+void var_substitute(sh_data_t *data);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -99,6 +100,7 @@ void parse_current_line(sh_data_t *data, char *line)
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
+    var_substitute(data);
     int len = 0;
     for (; data->line[len] != NULL; len++);
     parse_command_and_exec(data, len);
