@@ -6,11 +6,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May  2 14:54:26 2022
+# Make data base, printed on Thu May 26 12:05:17 2022
 
 # Variables
 
-# makefile (from 'Makefile', line 29)
+# makefile (from 'Makefile', line 37)
 OBJ = $(SRC:.c=.o)
 # environment
 GDK_BACKEND = x11
@@ -21,17 +21,15 @@ NO_AT_BRIDGE = 1
 # environment
 GNOME_SHELL_SESSION_MODE = pop
 # makefile (from 'Makefile', line 8)
-SRC = src/main.c src/memory/mem_shell.c src/execution/command.c src/execution/env_utils.c src/execution/signal.c src/execution/builtin_utils.c src/execution/command_error.c src/execution/prompt.c src/execution/io/retrieve_io.c src/execution/io/heredoc.c src/execution/io/pipe.c src/builtin/cd.c src/builtin/setenv.c src/builtin/exit.c src/builtin/unsetenv.c src/builtin/env.c src/parser/parse_line.c src/parser/parse_command.c src/parser/token_handlers.c src/parser/char_test.c
+SRC = src/main.c src/memory/mem_shell.c src/execution/command.c src/execution/env_utils.c src/execution/vars_utils.c src/execution/signal.c src/execution/builtin_utils.c src/execution/command_error.c src/execution/prompt.c src/execution/io/retrieve_io.c src/execution/io/heredoc.c src/execution/io/pipe.c src/builtin/cd.c src/builtin/set.c src/builtin/setenv.c src/builtin/exit.c src/builtin/unset.c src/builtin/unsetenv.c src/builtin/env.c src/builtin/where.c src/builtin/which.c src/parser/parse_line.c src/parser/parse_command.c src/parser/token_handlers.c src/parser/char_test.c src/parser/separator_handlers.c src/parser/parser_utils.c src/parser/var_substitute.c
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 ENHANCD_COMMAND = cd
 # environment
-STARSHIP_SESSION_KEY = 1488914781857821
+STARSHIP_SESSION_KEY = 3155515770132912
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-53b46a11-ea3e-41d9-ab25-4aa5bf38a79b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cc43edf8-4e31-4fb9-a724-65e72e15c43b.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -39,7 +37,7 @@ LC_NAME = en_GB.UTF-8
 # environment
 LC_NUMERIC = en_GB.UTF-8
 # environment
-VSCODE_CWD = /home/guillaume/delivery/42sh
+VSCODE_CWD = /home/guillaume/delivery/42sh_propre
 # environment
 WINDOWPATH = 2
 # environment
@@ -59,7 +57,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/guillaume/delivery/42sh
+PWD = /home/guillaume/delivery/42sh_propre
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -81,15 +79,19 @@ VSCODE_CODE_CACHE_PATH = /home/guillaume/.config/Code/CachedData/dfd34e8260c270d
 # environment
 LANG = C
 # environment
+POWERSHELL_UPDATECHECK = Off
+# environment
 XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+GNOME_TERMINAL_SERVICE = :1.100
 # makefile
 MAKEFLAGS = pqrRs
 # makefile
-CURDIR := /home/guillaume/delivery/42sh
+CURDIR := /home/guillaume/delivery/42sh_propre
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -121,13 +123,13 @@ ZSH = /home/guillaume/.oh-my-zsh
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 6226
+VSCODE_PID = 9455
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/3393,unix/pop-os:/tmp/.ICE-unix/3393
+SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/4473,unix/pop-os:/tmp/.ICE-unix/4473
 # automatic
 *F = $(notdir $*)
 # environment
@@ -136,7 +138,7 @@ ENHANCD_HOME_ARG =
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 35)
+# makefile (from 'Makefile', line 43)
 LIB = lib/my
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -146,7 +148,7 @@ ENHANCD_HYPHEN_NUM = 10
 P9K_TTY = old
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# makefile (from 'Makefile', line 33)
+# makefile (from 'Makefile', line 41)
 INCLUDE = include
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
@@ -159,11 +161,11 @@ ENHANCD_HYPHEN_ARG = -
 # environment
 XMODIFIERS = @im=ibus
 # default
-MAKECMDGOALS := mysh
-# environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+MAKECMDGOALS := 42sh
 # environment
 SHLVL = 1
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/93f89225_88cc_42d2_a5cd_39d4faca6534
 # environment
 MAKELEVEL := 1
 # environment
@@ -183,21 +185,19 @@ LC_MONETARY = en_GB.UTF-8
 # automatic
 ^F = $(notdir $^)
 # environment
-LC_TIME = en_GB.UTF-8
+COMMAND_NOT_FOUND_INSTALL_PROMPT = 1
 # environment
-INVOCATION_ID = 830e8e3559974f3cbf856066c353f7ff
+LC_TIME = en_GB.UTF-8
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = guillaume
 # environment
-TERM_PROGRAM = vscode
-# environment
 LC_TELEPHONE = en_GB.UTF-8
 # automatic
 ?F = $(notdir $?)
-# makefile (from 'Makefile', line 31)
-NAME = mysh
+# makefile (from 'Makefile', line 39)
+NAME = 42sh
 # environment
 GTK_IM_MODULE = ibus
 # environment
@@ -213,17 +213,15 @@ DESKTOP_SESSION = pop
 # environment
 ENHANCD_ROOT = /home/guillaume/.oh-my-zsh/custom/plugins/enhancd
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = Unity
+ORIGINAL_XDG_CURRENT_DESKTOP = pop:GNOME
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = guillaume
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 3422
+SYSTEMD_EXEC_PID = 6799
 # environment
 ENHANCD_COMPLETION_KEYBIND = ^I
 # environment
@@ -241,14 +239,9 @@ MAKE_VERSION := 4.3
 # environment
 ENHANCD_DISABLE_HOME = 0
 # environment
-MANAGERPID = 3140
-# environment
- 
 LC_MEASUREMENT = en_GB.UTF-8
 # environment
 STARSHIP_SHELL = zsh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6226
 # environment
 PAGER = less
 # environment
@@ -257,14 +250,14 @@ _ = /usr/bin/code
 LC_PAPER = en_GB.UTF-8
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'Makefile', line 37)
+# makefile (from 'Makefile', line 45)
 CFLAGS = -I$(INCLUDE) -Wall -Wextra -g
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 COLORTERM = truecolor
 # environment
-JOURNAL_STREAM = 8:40758
+POWERSHELL_TELEMETRY_OPTOUT = 1
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -280,6 +273,8 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-f94a3132-1.66.2-main.sock
 # environment
 TERM = xterm-256color
 # environment
+DOTNET_CLI_TELEMETRY_OPTOUT = 1
+# environment
 PAPERSIZE = a4
 # default
 .RECIPEPREFIX := 
@@ -288,7 +283,7 @@ PAPERSIZE = a4
 # default
 SUFFIXES := 
 # environment
-_P9K_TTY = /dev/pts/0
+_P9K_TTY = /dev/pts/4
 # environment
 VSCODE_CLI = 1
 # environment
@@ -296,19 +291,19 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 ENHANCD_DOT_ARG = ..
 # environment
+VTE_VERSION = 6800
+# environment
 ENHANCD_DIR = /home/guillaume/.enhancd
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-TERM_PROGRAM_VERSION = 1.66.2
-# environment
 GDMSESSION = pop
 # environment
 LC_IDENTIFICATION = en_GB.UTF-8
 # variable set hash-table stats:
-# Load=148/1024=14%, Rehash=0, Collisions=18/189=10%
+# Load=146/1024=14%, Rehash=0, Collisions=26/187=14%
 
 # Pattern-specific Variable Values
 
@@ -316,14 +311,14 @@ LC_IDENTIFICATION = en_GB.UTF-8
 
 # Directories
 
-# . (device 66309, inode 2712102): 10 files, no impossibilities.
+# . (device 66310, inode 2957865): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  recipe to execute (from 'Makefile', line 40):
+#  recipe to execute (from 'Makefile', line 48):
 	@echo "👉️ Compiling \033[1m$<\033[0m"
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -336,11 +331,14 @@ src/builtin/unsetenv.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-tests_run:
+tests_run: re
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+#  recipe to execute (from 'Makefile', line 76):
+		cp ./42sh ./tests/42sh
+		cd ./tests && ./tester.sh
 
 # Not a target:
 src/execution/env_utils.o:
@@ -361,7 +359,45 @@ src/builtin/env.o:
 #  File has not been updated.
 
 # Not a target:
+src/parser/parser_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+ 
+42sh: make_lib title src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/vars_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/set.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unset.o src/builtin/unsetenv.o src/builtin/env.o src/builtin/where.o src/builtin/which.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/parser/var_substitute.o
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
+#  recipe to execute (from 'Makefile', line 62):
+		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
+		 rm -f $(OBJ)
+
+# Not a target:
+src/builtin/which.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/builtin/where.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/execution/io/pipe.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/parser/var_substitute.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -375,7 +411,7 @@ debug:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-24 19:46:23.524645
+#  Last modified 2022-05-26 12:04:25.474481486
 #  File has been updated.
 #  Successfully updated.
 
@@ -384,7 +420,7 @@ title:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 50):
+#  recipe to execute (from 'Makefile', line 58):
 		@echo "\033[1;37m\033[1;46m                   MINISHELL1\
                     \033[0m"
 
@@ -393,9 +429,15 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 58):
+#  recipe to execute (from 'Makefile', line 66):
 	   make clean -C $(LIB)
 	   rm -f $(OBJ)
+
+# Not a target:
+src/builtin/set.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/memory/mem_shell.o:
@@ -456,7 +498,7 @@ all:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 44):
+#  recipe to execute (from 'Makefile', line 52):
 	@$(MAKE) -s $(NAME)
 
 fclean: clean
@@ -464,7 +506,8 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 62):
+#  recipe to execute (from 'Makefile', line 70):
+		make fclean -C lib/my
 		rm -f $(NAME)
 
 # Not a target:
@@ -474,7 +517,25 @@ src/execution/io/heredoc.o:
 #  File has not been updated.
 
 # Not a target:
+src/parser/separator_handlers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/builtin/exit.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/builtin/unset.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/execution/vars_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -497,19 +558,6 @@ src/execution/command_error.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-mysh: make_lib title src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o
-#  Phony target (prerequisite of .PHONY).
-#  Command line target.
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/4=0%
-#  recipe to execute (from 'Makefile', line 54):
-		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
-		 rm -f $(OBJ)
-
 # Not a target:
 src/execution/prompt.o:
 #  Implicit rule search has not been done.
@@ -524,7 +572,6 @@ src/builtin/setenv.o:
 
 make_lib:
 #  Phony target (prerequisite of .PHONY).
- 
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
 #  File does not exist.
@@ -548,7 +595,7 @@ make_lib:
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/12=8%
-#  recipe to execute (from 'Makefile', line 47):
+#  recipe to execute (from 'Makefile', line 55):
 		  make -C $(LIB)
 
 # Not a target:
@@ -563,26 +610,26 @@ src/parser/token_handlers.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-.PHONY: fclean title all debug re clean tests_run make_lib mysh
+.PHONY: fclean title all debug re clean tests_run make_lib 42sh
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=33/1024=3%, Rehash=0, Collisions=2/79=3%
+# Load=41/1024=4%, Rehash=0, Collisions=0/96=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 45 / storage = 643 B / avg = 14 B
-# current buf: size = 8162 B / used = 643 B / count = 45 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 54 / storage = 845 B / avg = 15 B
+# current buf: size = 8162 B / used = 845 B / count = 54 / avg = 15 B
 
-# strcache performance: lookups = 72 / hit rate = 37%
+# strcache performance: lookups = 84 / hit rate = 35%
 # hash-table stats:
-# Load=45/8192=1%, Rehash=0, Collisions=0/72=0%
-# Finished Make data base on Mon May  2 14:54:26 2022
+# Load=54/8192=1%, Rehash=0, Collisions=0/84=0%
+# Finished Make data base on Thu May 26 12:05:17 2022
 
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
@@ -591,11 +638,11 @@ src/parser/token_handlers.o:
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon May  2 14:54:26 2022
+# Make data base, printed on Thu May 26 12:05:17 2022
 
 # Variables
 
-# makefile (from 'Makefile', line 29)
+# makefile (from 'Makefile', line 37)
 OBJ = $(SRC:.c=.o)
 # environment
 GDK_BACKEND = x11
@@ -606,17 +653,16 @@ NO_AT_BRIDGE = 1
 # environment
 GNOME_SHELL_SESSION_MODE = pop
 # makefile (from 'Makefile', line 8)
-SRC = src/main.c src/memory/mem_shell.c src/execution/command.c src/execution/env_utils.c src/execution/signal.c src/execution/builtin_utils.c src/execution/command_error.c src/execution/prompt.c src/execution/io/retrieve_io.c src/execution/io/heredoc.c src/execution/io/pipe.c src/builtin/cd.c src/builtin/setenv.c src/builtin/exit.c src/builtin/unsetenv.c src/builtin/env.c src/parser/parse_line.c src/parser/parse_command.c src/parser/token_handlers.c src/parser/char_test.c
+SRC = src/main.c src/memory/mem_shell.c src/execution/command.c src/execution/env_utils.c src/execution/vars_utils.c src/execution/signal.c src/execution/builtin_utils.c src/execution/command_error.c src/execution/prompt.c src/execution/io/retrieve_io.c src/execution/io/heredoc.c src/execution/io/pipe.c src/builtin/cd.c src/builtin/set.c src/builtin/setenv.c src/builtin/exit.c src/builtin/unset.c src/builtin/unsetenv.c src/builtin/env.c src/builtin/where.c src/builtin/which.c src/parser/parse_line.c src/parser/parse_command.c src/parser/token_handlers.c src/parser/char_test.c src/parser/separator_handlers.c src/parser/parser_utils.c src/parser/var_substitute.c
 # environment
 SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
 ENHANCD_COMMAND = cd
+ 
 # environment
-STARSHIP_SESSION_KEY = 1488914781857821
+STARSHIP_SESSION_KEY = 3155515770132912
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-53b46a11-ea3e-41d9-ab25-4aa5bf38a79b.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-cc43edf8-4e31-4fb9-a724-65e72e15c43b.sock
 # environment
 MANDATORY_PATH = /usr/share/gconf/pop.mandatory.path
 # environment
@@ -624,7 +670,7 @@ LC_NAME = en_GB.UTF-8
 # environment
 LC_NUMERIC = en_GB.UTF-8
 # environment
-VSCODE_CWD = /home/guillaume/delivery/42sh
+VSCODE_CWD = /home/guillaume/delivery/42sh_propre
 # environment
 WINDOWPATH = 2
 # environment
@@ -644,7 +690,7 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/guillaume/delivery/42sh
+PWD = /home/guillaume/delivery/42sh_propre
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -666,15 +712,19 @@ VSCODE_CODE_CACHE_PATH = /home/guillaume/.config/Code/CachedData/dfd34e8260c270d
 # environment
 LANG = C
 # environment
+POWERSHELL_UPDATECHECK = Off
+# environment
 XAUTHORITY = /run/user/1000/gdm/Xauthority
 # default
 .LOADED := 
 # default
 .INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# environment
+GNOME_TERMINAL_SERVICE = :1.100
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/guillaume/delivery/42sh
+CURDIR := /home/guillaume/delivery/42sh_propre
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -706,13 +756,13 @@ ZSH = /home/guillaume/.oh-my-zsh
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 6226
+VSCODE_PID = 9455
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/3393,unix/pop-os:/tmp/.ICE-unix/3393
+SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/4473,unix/pop-os:/tmp/.ICE-unix/4473
 # automatic
 *F = $(notdir $*)
 # environment
@@ -721,7 +771,7 @@ ENHANCD_HOME_ARG =
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 35)
+# makefile (from 'Makefile', line 43)
 LIB = lib/my
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
@@ -731,7 +781,7 @@ ENHANCD_HYPHEN_NUM = 10
 P9K_TTY = old
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# makefile (from 'Makefile', line 33)
+# makefile (from 'Makefile', line 41)
 INCLUDE = include
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
@@ -746,9 +796,9 @@ XMODIFIERS = @im=ibus
 # default
 MAKECMDGOALS := all
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
-# environment
 SHLVL = 1
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/93f89225_88cc_42d2_a5cd_39d4faca6534
 # environment
 MAKELEVEL := 0
 # environment
@@ -768,21 +818,19 @@ LC_MONETARY = en_GB.UTF-8
 # automatic
 ^F = $(notdir $^)
 # environment
-LC_TIME = en_GB.UTF-8
+COMMAND_NOT_FOUND_INSTALL_PROMPT = 1
 # environment
-INVOCATION_ID = 830e8e3559974f3cbf856066c353f7ff
+LC_TIME = en_GB.UTF-8
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
 USERNAME = guillaume
 # environment
-TERM_PROGRAM = vscode
-# environment
 LC_TELEPHONE = en_GB.UTF-8
 # automatic
 ?F = $(notdir $?)
-# makefile (from 'Makefile', line 31)
-NAME = mysh
+# makefile (from 'Makefile', line 39)
+NAME = 42sh
 # environment
 GTK_IM_MODULE = ibus
 # environment
@@ -798,17 +846,15 @@ DESKTOP_SESSION = pop
 # environment
 ENHANCD_ROOT = /home/guillaume/.oh-my-zsh/custom/plugins/enhancd
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = Unity
+ORIGINAL_XDG_CURRENT_DESKTOP = pop:GNOME
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
 LOGNAME = guillaume
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # makefile
 .DEFAULT_GOAL := all
 # environment
-SYSTEMD_EXEC_PID = 3422
+SYSTEMD_EXEC_PID = 6799
 # environment
 ENHANCD_COMPLETION_KEYBIND = ^I
 # environment
@@ -826,30 +872,25 @@ MAKE_VERSION := 4.3
 # environment
 ENHANCD_DISABLE_HOME = 0
 # environment
-MANAGERPID = 3140
-# environment
 LC_MEASUREMENT = en_GB.UTF-8
 # environment
 STARSHIP_SHELL = zsh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6226
-# environment
 PAGER = less
- 
 # environment
 _ = /usr/bin/code
 # environment
 LC_PAPER = en_GB.UTF-8
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
-# makefile (from 'Makefile', line 37)
+# makefile (from 'Makefile', line 45)
 CFLAGS = -I$(INCLUDE) -Wall -Wextra -g
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 COLORTERM = truecolor
 # environment
-JOURNAL_STREAM = 8:40758
+POWERSHELL_TELEMETRY_OPTOUT = 1
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -865,6 +906,8 @@ VSCODE_IPC_HOOK = /run/user/1000/vscode-f94a3132-1.66.2-main.sock
 # environment
 TERM = xterm-256color
 # environment
+DOTNET_CLI_TELEMETRY_OPTOUT = 1
+# environment
 PAPERSIZE = a4
 # default
 .RECIPEPREFIX := 
@@ -873,7 +916,7 @@ PAPERSIZE = a4
 # default
 SUFFIXES := 
 # environment
-_P9K_TTY = /dev/pts/0
+_P9K_TTY = /dev/pts/4
 # environment
 VSCODE_CLI = 1
 # environment
@@ -881,34 +924,35 @@ ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 ENHANCD_DOT_ARG = ..
 # environment
+VTE_VERSION = 6800
+# environment
 ENHANCD_DIR = /home/guillaume/.enhancd
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-TERM_PROGRAM_VERSION = 1.66.2
-# environment
 GDMSESSION = pop
 # environment
 LC_IDENTIFICATION = en_GB.UTF-8
 # variable set hash-table stats:
-# Load=148/1024=14%, Rehash=0, Collisions=18/188=10%
+# Load=146/1024=14%, Rehash=0, Collisions=25/186=13%
 
 # Pattern-specific Variable Values
 
+ 
 # No pattern-specific variable values.
 
 # Directories
 
-# . (device 66309, inode 2712102): 10 files, no impossibilities.
+# . (device 66310, inode 2957865): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  recipe to execute (from 'Makefile', line 40):
+#  recipe to execute (from 'Makefile', line 48):
 	@echo "👉️ Compiling \033[1m$<\033[0m"
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -921,11 +965,14 @@ src/builtin/unsetenv.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-tests_run:
+tests_run: re
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
+#  recipe to execute (from 'Makefile', line 76):
+		cp ./42sh ./tests/42sh
+		cd ./tests && ./tester.sh
 
 # Not a target:
 src/execution/env_utils.o:
@@ -946,7 +993,40 @@ src/builtin/env.o:
 #  File has not been updated.
 
 # Not a target:
+src/parser/parser_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+42sh: make_lib title src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/vars_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/set.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unset.o src/builtin/unsetenv.o src/builtin/env.o src/builtin/where.o src/builtin/which.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/parser/var_substitute.o
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 62):
+		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
+		 rm -f $(OBJ)
+
+# Not a target:
+src/builtin/which.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/builtin/where.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/execution/io/pipe.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/parser/var_substitute.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -960,7 +1040,7 @@ debug:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-04-24 19:46:23.524645
+#  Last modified 2022-05-26 12:04:25.474481486
 #  File has been updated.
 #  Successfully updated.
 
@@ -969,7 +1049,7 @@ title:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 50):
+#  recipe to execute (from 'Makefile', line 58):
 		@echo "\033[1;37m\033[1;46m                   MINISHELL1\
                     \033[0m"
 
@@ -978,9 +1058,15 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 58):
+#  recipe to execute (from 'Makefile', line 66):
 	   make clean -C $(LIB)
 	   rm -f $(OBJ)
+
+# Not a target:
+src/builtin/set.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 src/memory/mem_shell.o:
@@ -1062,7 +1148,7 @@ all:
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=2/14=14%
-#  recipe to execute (from 'Makefile', line 44):
+#  recipe to execute (from 'Makefile', line 52):
 	@$(MAKE) -s $(NAME)
 
 fclean: clean
@@ -1070,7 +1156,8 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 62):
+#  recipe to execute (from 'Makefile', line 70):
+		make fclean -C lib/my
 		rm -f $(NAME)
 
 # Not a target:
@@ -1080,7 +1167,25 @@ src/execution/io/heredoc.o:
 #  File has not been updated.
 
 # Not a target:
+src/parser/separator_handlers.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 src/builtin/exit.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/builtin/unset.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/execution/vars_utils.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -1109,15 +1214,6 @@ src/execution/prompt.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-mysh: make_lib title src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o
-#  Phony target (prerequisite of .PHONY).
-#  Implicit rule search has not been done.
-#  File does not exist.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 54):
-		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
-		 rm -f $(OBJ)
-
 # Not a target:
 src/builtin/setenv.o:
 #  Implicit rule search has not been done.
@@ -1129,10 +1225,11 @@ make_lib:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 47):
+#  recipe to execute (from 'Makefile', line 55):
 		  make -C $(LIB)
 
 # Not a target:
+ 
 src/parser/token_handlers.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -1144,26 +1241,25 @@ src/parser/token_handlers.o:
 #  Modification time never checked.
 #  File has not been updated.
 
- 
-.PHONY: fclean title all debug re clean tests_run make_lib mysh
+.PHONY: fclean title all debug re clean tests_run make_lib 42sh
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=33/1024=3%, Rehash=0, Collisions=2/80=2%
+# Load=41/1024=4%, Rehash=0, Collisions=0/97=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 45 / storage = 643 B / avg = 14 B
-# current buf: size = 8162 B / used = 643 B / count = 45 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 54 / storage = 845 B / avg = 15 B
+# current buf: size = 8162 B / used = 845 B / count = 54 / avg = 15 B
 
-# strcache performance: lookups = 72 / hit rate = 37%
+# strcache performance: lookups = 84 / hit rate = 35%
 # hash-table stats:
-# Load=45/8192=1%, Rehash=0, Collisions=0/72=0%
-# Finished Make data base on Mon May  2 14:54:26 2022
+# Load=54/8192=1%, Rehash=0, Collisions=0/84=0%
+# Finished Make data base on Thu May 26 12:05:17 2022
 
  

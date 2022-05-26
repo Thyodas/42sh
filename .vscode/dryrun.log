@@ -1,7 +1,7 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/guillaume/delivery/42sh'
-make -s mysh
-make[1]: Entering directory '/home/guillaume/delivery/42sh'
+make: Entering directory '/home/guillaume/delivery/42sh_propre'
+make -s 42sh
+make[1]: Entering directory '/home/guillaume/delivery/42sh_propre'
 make -C lib/my
 echo "\033[1;37m\033[1;46m                   MINISHELL1\
                     \033[0m"
@@ -13,6 +13,8 @@ echo "👉️ Compiling \033[1msrc/execution/command.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/command.o src/execution/command.c
 echo "👉️ Compiling \033[1msrc/execution/env_utils.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/env_utils.o src/execution/env_utils.c
+echo "👉️ Compiling \033[1msrc/execution/vars_utils.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/execution/vars_utils.o src/execution/vars_utils.c
 echo "👉️ Compiling \033[1msrc/execution/signal.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/signal.o src/execution/signal.c
 echo "👉️ Compiling \033[1msrc/execution/builtin_utils.c\033[0m"
@@ -29,14 +31,22 @@ echo "👉️ Compiling \033[1msrc/execution/io/pipe.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/io/pipe.o src/execution/io/pipe.c
 echo "👉️ Compiling \033[1msrc/builtin/cd.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/cd.o src/builtin/cd.c
+echo "👉️ Compiling \033[1msrc/builtin/set.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/builtin/set.o src/builtin/set.c
 echo "👉️ Compiling \033[1msrc/builtin/setenv.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/setenv.o src/builtin/setenv.c
 echo "👉️ Compiling \033[1msrc/builtin/exit.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/exit.o src/builtin/exit.c
+echo "👉️ Compiling \033[1msrc/builtin/unset.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/builtin/unset.o src/builtin/unset.c
 echo "👉️ Compiling \033[1msrc/builtin/unsetenv.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/unsetenv.o src/builtin/unsetenv.c
 echo "👉️ Compiling \033[1msrc/builtin/env.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/env.o src/builtin/env.c
+echo "👉️ Compiling \033[1msrc/builtin/where.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/builtin/where.o src/builtin/where.c
+echo "👉️ Compiling \033[1msrc/builtin/which.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/builtin/which.o src/builtin/which.c
 echo "👉️ Compiling \033[1msrc/parser/parse_line.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/parse_line.o src/parser/parse_line.c
 echo "👉️ Compiling \033[1msrc/parser/parse_command.c\033[0m"
@@ -45,8 +55,14 @@ echo "👉️ Compiling \033[1msrc/parser/token_handlers.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/token_handlers.o src/parser/token_handlers.c
 echo "👉️ Compiling \033[1msrc/parser/char_test.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/char_test.o src/parser/char_test.c
-gcc -g -o mysh src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o -Llib/my -lmy
-rm -f src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o
-make[1]: Leaving directory '/home/guillaume/delivery/42sh'
-make: Leaving directory '/home/guillaume/delivery/42sh'
+echo "👉️ Compiling \033[1msrc/parser/separator_handlers.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/parser/separator_handlers.o src/parser/separator_handlers.c
+echo "👉️ Compiling \033[1msrc/parser/parser_utils.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/parser/parser_utils.o src/parser/parser_utils.c
+echo "👉️ Compiling \033[1msrc/parser/var_substitute.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/parser/var_substitute.o src/parser/var_substitute.c
+gcc -g -o 42sh src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/vars_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/set.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unset.o src/builtin/unsetenv.o src/builtin/env.o src/builtin/where.o src/builtin/which.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/parser/var_substitute.o -Llib/my -lmy
+rm -f src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/vars_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/set.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unset.o src/builtin/unsetenv.o src/builtin/env.o src/builtin/where.o src/builtin/which.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/parser/var_substitute.o
+make[1]: Leaving directory '/home/guillaume/delivery/42sh_propre'
+make: Leaving directory '/home/guillaume/delivery/42sh_propre'
  

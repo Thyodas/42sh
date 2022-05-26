@@ -435,3 +435,53 @@ CLEAN=""
 TESTS=
   echo 'echo $a'
 [947-END]
+
+[948]
+NAME="Variables show var"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a = b'
+  echo 'echo $a'
+  echo 'set a= b'
+  echo 'echo $a'
+  echo 'echo $b'
+  echo 'set a = "Salut tout le monde, cest david la farge pokemon"'
+  echo 'echo REMOVING USELESS     VARIABLES'
+  echo 'unset addsuffix'
+  echo 'unset anyerror'
+  echo 'unset argv'
+  echo 'unset argv'
+  echo 'unset autoexpand'
+  echo 'unset autolist'
+  echo 'unset cstohome'
+  echo 'unset csubstnonl'
+  echo 'unset cwd'
+  echo 'unset dir'
+  echo 'unset dirstack'
+  echo 'unset echo_style'
+  echo 'unset edit'
+  echo 'unset euid'
+  echo 'unset euser'
+  echo 'unset gid'
+  echo 'unset group'
+  echo 'unset history'
+  echo 'unset home'
+  echo 'unset killring'
+  echo 'unset owd'
+  echo 'unset path'
+  echo 'unset p/bin'
+  echo 'unset prompt'
+  echo 'unset prompt2'
+  echo 'unset prompt3'
+  echo 'unset shell'
+  echo 'unset shlvl'
+  echo 'unset status'
+  echo 'unset tcsh'
+  echo 'unset term'
+  echo 'unset tty'
+  echo 'unset uid'
+  echo 'unset user'
+  echo 'unset version'
+  echo 'unset cdtohome ; unset status _ ; set | /usr/bin/grep -v status'
+[948-END]
