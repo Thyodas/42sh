@@ -485,3 +485,18 @@ TESTS=
   echo 'unset version'
   echo 'unset cdtohome ; unset status _ ; set | /usr/bin/grep -v status'
 [948-END]
+
+[949]
+NAME="Variable: default"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $term'
+  echo 'echo $cwd'
+  echo 'cd ..'
+  echo 'echo $cwd'
+  echo 'cd -'
+  echo 'echo $cwd'
+  echo 'cd'
+  echo 'echo $cwd'
+[949-END]
