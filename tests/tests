@@ -427,3 +427,11 @@ TESTS=
   echo 'echo $b'
   echo 'set a =b'
 [946-END]
+
+[947]
+NAME="Variable: undefined variable"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $a'
+[947-END]
