@@ -79,7 +79,7 @@ with a letter.\n") : 0;
             data->current_command->argv[i] = "";
         }
     }
-    return (0);
+    return (error);
 }
 
 int builtin_set(sh_data_t *data)

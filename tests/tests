@@ -288,3 +288,16 @@ TESTS=
   echo 'unset PWD'
   echo 'echo $PWD'
 [930-END]
+
+[931]
+NAME="Variables with spaces"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a = b'
+  echo 'echo $a'
+  echo 'set a= b'
+  echo 'echo $a'
+  echo 'echo $b'
+  echo 'set a =b'
+[931-END]
