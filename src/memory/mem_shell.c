@@ -16,6 +16,8 @@ void init_default_vars(sh_data_t *data)
     getcwd(env_path, PATH_MAX);
     set_var_value(data, "term", get_env_value(data, "TERM"));
     set_var_value(data, "cwd", getcwd(env_path, PATH_MAX));
+    set_var_value(data, "_", "");
+    set_var_value(data, "status", "0");
 }
 
 static char **malloc_envp(sh_data_t *data)
