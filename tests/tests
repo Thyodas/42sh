@@ -500,3 +500,14 @@ TESTS=
   echo 'cd'
   echo 'echo $cwd'
 [949-END]
+
+[950]
+NAME="Variable: status"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $status'
+  echo 'ls jesuispasunfichier'
+  echo 'echo $status'
+  echo 'echo $stauts'
+[950-END]
