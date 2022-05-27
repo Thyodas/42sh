@@ -10,6 +10,17 @@
 #include "my_list.h"
 #include "definitions.h"
 
+#include <term.h>
+
+#include <ncurses.h>
+
+static banned_test(sh_data_t *data)
+{
+    char *term_type = get_env_value(data, "TERM");
+    int termcap = tgetent(NULL, term_type);
+    my_printf("%d %d\n", tgetnum("co"), tgetnum("li"));
+}
+
 static void my_shell_prompt(char **envp)
 {
     sig_handler();
@@ -21,6 +32,7 @@ static void my_shell_prompt(char **envp)
     ssize_t lineSize = 0;
     while (1) {
         char *line = NULL;
+        banned_test(data);
         print_prompt(data);
         lineSize = getline(&line, &len, stdin);
         if (lineSize == EOF)
