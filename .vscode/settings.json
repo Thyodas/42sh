@@ -1,0 +1,10 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "files.associations": {
+        "__stddef_max_align_t.h": "c",
+        "shell.h": "c",
+        "definitions.h": "c",
+        "stat.h": "c",
+        "signal.h": "c"
+    }
+}
