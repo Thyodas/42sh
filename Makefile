@@ -59,7 +59,7 @@ title:
                     \033[0m"
 
 $(NAME): make_lib title $(OBJ)
-		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy -lncurses
+		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
 		 rm -f $(OBJ)
 
 clean:
