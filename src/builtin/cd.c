@@ -30,7 +30,6 @@ static int cd_back(sh_data_t *data)
     }
     change_old_pwd(data, env_path);
     set_env_value(data, "PWD", getcwd(env_path, PATH_MAX));
-    set_var_value(data, "cwd", getcwd(env_path, PATH_MAX));
     return (0);
 }
 
@@ -45,7 +44,6 @@ static int cd_home(sh_data_t *data)
     }
     change_old_pwd(data, env_path);
     set_env_value(data, "PWD", getcwd(env_path, PATH_MAX));
-    set_var_value(data, "cwd", getcwd(env_path, PATH_MAX));
     return (0);
 }
 
@@ -68,6 +66,5 @@ int builtin_cd(sh_data_t *data)
     }
     change_old_pwd(data, env_path);
     set_env_value(data, "PWD", getcwd(env_path, PATH_MAX));
-    set_var_value(data, "cwd", getcwd(env_path, PATH_MAX));
     return (0);
 }

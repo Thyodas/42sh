@@ -9,7 +9,6 @@
 #include "my.h"
 
 void extend_array(char ***array, char *new_line);
-int cmp(const void *str_a, const void *str_b);
 
 char *remove_line_spaces(sh_data_t *data, int *i)
 {
@@ -52,7 +51,6 @@ void set_var_value(sh_data_t *data, char *name, char *value)
 {
     int pos = get_var_line_pos(data, name);
     char *new_line = create_var_line(name, value);
-    int ctr = 0;
     if (pos == -1) {
         int size = get_var_size(data);
         char **new_var_array = malloc(sizeof(char *) * (size + 2));
@@ -65,8 +63,6 @@ void set_var_value(sh_data_t *data, char *name, char *value)
         free(data->vars[pos]);
         data->vars[pos] = new_line;
     }
-    for (; data->vars[ctr] != NULL; ctr++);
-    qsort(data->vars, ctr, sizeof(char *), cmp);
 }
 
 int check_set(sh_data_t *data)
