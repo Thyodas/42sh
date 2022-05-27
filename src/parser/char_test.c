@@ -22,5 +22,5 @@ int is_char_valid(char c)
 
 int is_quote(int c)
 {
-    return (c == '\'' || c == '"');
+    return (c == '\'' || c == '"' || c == '`');
 }

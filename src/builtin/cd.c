@@ -13,6 +13,7 @@ static void change_old_pwd(sh_data_t *data, char *old_pwd)
     free(data->old_pwd);
     data->old_pwd = my_strdup(old_pwd);
     set_env_value(data, "OLDPWD", data->old_pwd);
+    set_var_value(data, "precwd", data->old_pwd);
 }
 
 static int cd_back(sh_data_t *data)
