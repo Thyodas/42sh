@@ -18,6 +18,7 @@ SRC = src/main.c \
 	  src/execution/io/pipe.c \
 	  src/builtin/cd.c \
 	  src/builtin/history.c \
+	  src/builtin/history_flag.c \
 	  src/builtin/setenv.c \
 	  src/builtin/exit.c \
 	  src/builtin/unsetenv.c \

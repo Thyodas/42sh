@@ -8,6 +8,7 @@
 #include "shell.h"
 #include "my_list.h"
 #include "my.h"
+#include "time.h"
 
 char **line_to_array(char const *str);
 void extend_array(char ***array, char *new_line);
@@ -27,6 +28,7 @@ int handle_separators(sh_data_t *data, char **options, bool *error,
 int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
+char *history_maker(char **line, int length, int len, char *clock);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -92,20 +94,48 @@ static void parse_command_and_exec(sh_data_t *data, int len)
     }
 }
 
-char *history(char **line, int length, int len)
+char *my_itoa(int nb)
 {
-    char *dest = malloc(sizeof(char) * (length + len + 1));
+    int len = 0;
+    char *str = NULL;
+    int neg = (nb < 0) ? -1 : 1;
 
-    for (int i = 0; line[i] != NULL; i++) {
-        dest = my_strcat(dest, line[i]);
-        dest = my_strcat(dest, " ");
+    nb *= neg;
+    if (nb == 0)
+        return ("0");
+    for (int tmp = nb ; tmp > 0; ++len)
+        tmp /= 10;
+    str = malloc(sizeof(char) * (len + 1));
+    str[len] = '\0';
+    if (neg == -1)
+        str[0] = '-';
+    for (; len--; nb /= 10) {
+        if (neg == -1)
+            str[len + 1] = nb % 10  + '0';
+        else
+            str[len] = nb % 10  + '0';
     }
-    return dest;
+    return (str);
+}
+
+char *command_time()
+{
+    time_t rawtime = time(NULL);
+    struct tm *time_info = localtime(&rawtime);
+    char *clock = malloc(sizeof(char) * 7);
+    int hour = time_info->tm_hour;
+    int min = time_info->tm_min;
+    clock = my_strcat(clock, my_itoa(hour));
+    clock = my_strcat(clock, ":");
+    clock = my_strcat(clock, my_itoa(min));
+    clock = my_strcat(clock, "\t");
+    return clock;
 }
 
 void parse_current_line(sh_data_t *data, char *line)
 {
     char *last_command = my_strdup("");
+    char *time = command_time();
 
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
@@ -116,7 +146,9 @@ void parse_current_line(sh_data_t *data, char *line)
     int length = 0;
     for (; data->line[len] != NULL; len++)
         for (int i = 0; data->line[len][i] != '\0'; i++, length++);
-    last_command = history(data->line, length, len);
+    length += my_strlen(time);
+    last_command = history_maker(data->line, length, len, time);
     extend_array(&data->history, last_command);
+    data->history_index++;
     parse_command_and_exec(data, len);
 }
