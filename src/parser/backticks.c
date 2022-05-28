@@ -27,10 +27,13 @@ char *clean_str(char *str)
 
 char *reformat(char *str)
 {
+    char *res;
+
     for (int i = 0; str[i] != '\0'; i++)
         str[i] = str[i] == '\n' ? ' ' : str[i];
     str[my_strlen(str) - 1] = '\0';
-    return (clean_str(str));
+    res = clean_str(str);
+    return (res);
 }
 
 char **dup_array(char **array)

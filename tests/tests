@@ -553,3 +553,19 @@ CLEAN=""
 TESTS=
   echo 'echo `ls -l`'
 [955-END]
+
+[956]
+NAME="Backticks 3"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `tree`'
+[956-END]
+
+[957]
+NAME="Backticks 4"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l | cat -e`'
+[957-END]

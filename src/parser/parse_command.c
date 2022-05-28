@@ -103,11 +103,11 @@ void parse_current_line(sh_data_t *data, char *line)
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
-    handle_backtick(data);
     if (var_substitute(data)) {
         data->last_exit_status = 1;
         return;
     }
+    handle_backtick(data);
     int len = 0;
     for (; data->line[len] != NULL; len++);
     parse_command_and_exec(data, len);
