@@ -95,6 +95,8 @@ static void parse_command_and_exec(sh_data_t *data, int len)
 
 void parse_current_line(sh_data_t *data, char *line)
 {
+    char status[10];
+
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
     data->line = line_to_array(line);
@@ -108,4 +110,6 @@ void parse_current_line(sh_data_t *data, char *line)
     int len = 0;
     for (; data->line[len] != NULL; len++);
     parse_command_and_exec(data, len);
+    sprintf(status, "%d", data->last_exit_status);
+    set_var_value(data, "status", status);
 }

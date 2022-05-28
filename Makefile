@@ -26,6 +26,7 @@ SRC = src/main.c \
 	  src/builtin/env.c \
 	  src/builtin/where.c \
 	  src/builtin/which.c \
+	  src/builtin/repeat.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \
@@ -59,7 +60,7 @@ title:
                     \033[0m"
 
 $(NAME): make_lib title $(OBJ)
-		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy -lncurses
+		 gcc -g -o $(NAME) $(OBJ) -L$(LIB) -lmy
 		 rm -f $(OBJ)
 
 clean:

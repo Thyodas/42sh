@@ -8,6 +8,11 @@
 #include "shell.h"
 #include "my.h"
 
+int cmp(const void *str_a, const void *str_b)
+{
+    return (my_strcmp(*((char**) str_a), *((char**) str_b)));
+}
+
 int get_var_size(sh_data_t *data)
 {
     int i = 0;

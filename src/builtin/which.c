@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2022
 ** minishell1
 ** File description:
-** where
+** which
 */
 
 #include "shell.h"

@@ -10,6 +10,17 @@
 
 sh_data_t *get_shell_data(sh_data_t *data);
 
+void init_default_vars(sh_data_t *data)
+{
+    char env_path[PATH_MAX];
+    char *term = get_env_value(data, "TERM");
+    char *error = getcwd(env_path, PATH_MAX);
+    set_var_value(data, "term", term ? term : "");
+    set_var_value(data, "cwd", error ? env_path : "");
+    set_var_value(data, "_", "");
+    set_var_value(data, "status", "0");
+}
+
 static char **malloc_envp(sh_data_t *data)
 {
     int len = get_env_size(data);
@@ -58,6 +69,7 @@ sh_data_t *init_shell_data(char **envp)
     data->last_sig_status = 0;
     data->current_command = NULL;
     get_shell_data(data);
+    init_default_vars(data);
     return (data);
 }
 
