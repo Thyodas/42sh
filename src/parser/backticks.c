@@ -83,10 +83,11 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
     return (my_strdup(buffer));
 }
 
-void handle_backtick(sh_data_t *data)
+int handle_backtick(sh_data_t *data)
 {
     char *str;
     char **oldlines = dup_array(data->line);
+    int exit_status = 0;
 
     for (int i = 0; data->line[i]; i++) {
         if (data->line[i][0] == '`') {
@@ -94,7 +95,9 @@ void handle_backtick(sh_data_t *data)
             free(oldlines[i]);
             str = reformat(str);
             oldlines[i] = my_strdup(str);
+            exit_status = data->last_exit_status;
         }
     }
     data->line = oldlines;
+    return (exit_status);
 }
