@@ -569,3 +569,11 @@ CLEAN=""
 TESTS=
   echo 'echo `ls -l | cat -e`'
 [957-END]
+
+[958]
+NAME="Backticks with error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls jexistepa`'
+[958-END]

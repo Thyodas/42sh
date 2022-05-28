@@ -7,6 +7,8 @@
 
 #include "shell.h"
 #include "my.h"
+#include <sys/stat.h>
+#include <fcntl.h>
 
 char *clean_str(char *str)
 {
@@ -56,7 +58,6 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
     int message_size = 1024;
     char buffer[message_size];
     int old_out = dup(STDOUT_FILENO);
-    int status = 0;
     ssize_t size;
 
     if (pipe(fd) == -1) {
@@ -69,10 +70,12 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
     dup2(fd[1], STDOUT_FILENO);
     close(fd[1]);
     parse_current_line(data, cmd);
-    wait(&status);
     close(fd[1]);
-    size = read(fd[0], buffer, message_size);
-    buffer[size] = '\0';
+    if (data->last_exit_status == 0) {
+        size = read(fd[0], buffer, message_size);
+        buffer[size] = '\0';
+    } else
+        buffer[0] = '\0';
     close(fd[0]);
     close(STDOUT_FILENO);
     dup2(old_out, STDOUT_FILENO);
