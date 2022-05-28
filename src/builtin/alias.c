@@ -7,7 +7,7 @@
 
 #include "shell.h"
 #include "my.h"
-#define INPUT data->input
+#define INPUT data->line
 
 static void extend_3d_array(char ****array, char **new_line)
 {
@@ -22,34 +22,57 @@ static void extend_3d_array(char ****array, char **new_line)
     *array = new_array;
 }
 
-static void add_alias(sh_data_t *data)
+static int add_new_alias(sh_data_t *data)
 {
-    unsigned int size = 0;
-    char *new_alias = NULL;
-    for (unsigned int i = 2/*skip alias*/; INPUT[i]; ++i) {
-        size += my_strlen(INPUT[i]);
-        new_alias = realloc(new_alias, sizeof(char) * (size + 1));
-        my_strcat(new_alias, INPUT[i]);
-    }
-    extend_3d_array(&data->alias, (char **){INPUT[1], new_alias}); //TODO review
-    return;
+    unsigned int size = 2;
+    for (; INPUT[size]; ++size);
+    char **new_alias = malloc(sizeof(char *) * (size--));
+    new_alias[size] = NULL;
+    for (size = 1; INPUT[size]; ++size)
+        new_alias[size - 1] = INPUT[size];
+    extend_3d_array(&data->alias, new_alias);
+    return 0;
 }
 
-static void checker(sh_data_t *data, char *alias)
+int builtin_alias(sh_data_t *data)
 {
-    return;
+    /* for (unsigned int i = 0; data->alias[i]; ++i) {
+        if (my_strcmp(data->alias[i][0], INPUT[1]) == 0) {
+            for (unsigned int noah = 1; INPUT[noah]; ++noah) {
+                free(data->alias[i][1]);
+                data->alias[i][1] = my_strdup(INPUT[noah]);
+                return 0;
+            }
+        }
+    } */
+    return add_new_alias(data);
+}
+
+static void should_i_replace(sh_data_t *data, char **alias, unsigned int i)
+{
+    if(my_strcmp(INPUT[i], alias[0]) != 0)
+        return;
+    unsigned int mehdy = 0;
+    unsigned int size_input = 1;
+    unsigned int size_alias = 1;
+    for (; INPUT[size_input]; ++size_input);
+    for (; alias[size_alias]; ++size_alias);
+    char **new_input = malloc(sizeof(char *) * (--size_input + size_alias--));
+    new_input[size_input + size_alias] = NULL;
+    for (; mehdy < i; ++mehdy)
+        new_input[mehdy] = INPUT[mehdy];
+    for (; alias[mehdy - i + 1]; ++mehdy)
+        new_input[mehdy] = alias[mehdy - i + 1];
+    for (; INPUT[mehdy - (size_input - 2)]; ++mehdy)
+        new_input[mehdy] = INPUT[mehdy - (size_input - 2)];
 }
 
 int alias_handler(sh_data_t *data)
 {
     //TODO error_handling
-    if (my_strcmp("alias", input[0])) {
-        add_alias(data);
-        return;
-    }
-    for (unsigned int i = 0; i alias[i]; ++i) {
-        if (my_strcmp(INPUT[0], alias[i][0])) {
-            INPUT[i] = alias[i][1];
+    for (unsigned int i = 0; INPUT[i]; ++i) {
+        for (unsigned int j = 0; data->alias[j]; ++j) {
+            should_i_replace(data, data->alias[j], i);
         }
     }
     return (0);

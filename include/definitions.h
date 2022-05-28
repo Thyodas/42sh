@@ -56,6 +56,9 @@
     // builtin/repeat.c
     int builtin_repeat(sh_data_t *data);
 
+    // builtin/alias.c
+    int builtin_alias(sh_data_t *data);
+
     /*
     Execution
     */
