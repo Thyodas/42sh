@@ -36,15 +36,19 @@ static int add_new_alias(sh_data_t *data)
 
 int builtin_alias(sh_data_t *data)
 {
-    /* for (unsigned int i = 0; data->alias[i]; ++i) {
+    unsigned int size = 2;
+    for (unsigned int i = 0; data->alias[i]; ++i) {
         if (my_strcmp(data->alias[i][0], INPUT[1]) == 0) {
-            for (unsigned int noah = 1; INPUT[noah]; ++noah) {
-                free(data->alias[i][1]);
-                data->alias[i][1] = my_strdup(INPUT[noah]);
-                return 0;
-            }
+            for (unsigned int noah = 1; data->alias[i][noah]; ++noah)
+                free(data->alias[i][noah]);
+            for (; INPUT[size]; ++size);
+            char **new_alias = malloc(sizeof(char *) * (size--));
+            new_alias[size] = NULL;
+            for (size = 1; INPUT[size]; ++size)
+                new_alias[size - 1] = INPUT[size];
+            data->alias[i] = new_alias;
         }
-    } */
+    }
     return add_new_alias(data);
 }
 
@@ -73,9 +77,7 @@ static void should_i_replace(sh_data_t *data, char **alias, unsigned int i)
 
     INPUT = new_input;
 }
-// alias tmp ls -a -p
-// echo Hello; tmp ; echo World; echo
-// echo Hello ; ls -a -p
+
 int alias_handler(sh_data_t *data)
 {
     //TODO error_handling
