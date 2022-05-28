@@ -122,13 +122,13 @@ char *command_time()
 {
     time_t rawtime = time(NULL);
     struct tm *time_info = localtime(&rawtime);
-    char *clock = malloc(sizeof(char) * 7);
+    char *clock = malloc(sizeof(char) * 8);
     int hour = time_info->tm_hour;
     int min = time_info->tm_min;
     clock = my_strcat(clock, my_itoa(hour));
     clock = my_strcat(clock, ":");
     clock = my_strcat(clock, my_itoa(min));
-    clock = my_strcat(clock, "\t");
+    clock = my_strcat(clock, "\t\0");
     return clock;
 }
 
@@ -146,6 +146,7 @@ void parse_current_line(sh_data_t *data, char *line)
     int length = 0;
     for (; data->line[len] != NULL; len++)
         for (int i = 0; data->line[len][i] != '\0'; i++, length++);
+    length += len + 1;
     length += my_strlen(time);
     last_command = history_maker(data->line, length, len, time);
     extend_array(&data->history, last_command);

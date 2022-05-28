@@ -9,8 +9,7 @@
 #include "shell.h"
 
 int write_in_history_file(sh_data_t *data);
-int history_delete(sh_data_t *data);
-int offset_delete(sh_data_t *data, int line);
+static int history_delete(sh_data_t *data);
 int add_in_file(sh_data_t *data);
 int n_flag(sh_data_t *data);
 int add_from_file_to_history(sh_data_t *data);
@@ -20,22 +19,36 @@ int(*ptr[])(sh_data_t *) = {
     write_in_history_file,
 };
 
-int history_delete(sh_data_t *data)
+static int history_delete(sh_data_t *data)
 {
     for (int i = 0; data->history[i] != NULL; i++)
         free(data->history[i]);
     free(data->history);
     data->history = malloc(sizeof(char *));
-    data->history[0] = NULL;
-    if (data->current_command->argc > 2)
+    data->history[0] = my_strdup("");
+    if (data->current_command->argc > 2
+    && my_str_isnum(data->current_command->argv[2]) == 0)
         my_fprintf(2, "history: Badly formed number.\n");
     return 0;
 }
 
-int offset_delete(sh_data_t *data, int line)
+static char **offset_delete(sh_data_t *data, int line)
 {
     int i = 0;
-    return 0;
+    int len = 0;
+    char **new_array = NULL;
+
+    for(; data->history[len] != NULL; len++);
+    new_array = malloc(sizeof(char *) * len);
+    for(; data->history[i] != NULL; i++) {
+        if (i == line)
+            continue;
+        if (i > line)
+            new_array[i - 1] = my_strdup(data->history[i]);
+        else
+            new_array[i - 1] = my_strdup(data->history[i]);
+    }
+    return new_array;
 }
 
 int add_in_file(sh_data_t *data)
@@ -68,11 +81,24 @@ int history_flag(sh_data_t *data)
     }
     if (my_strcmp(data->current_command->argv[1], "-d") == 0) {
         if (data->current_command->argc == 3 
-        && my_str_isnum(data->current_command->argv[2]) == 0)
+        && my_str_isnum(data->current_command->argv[2]) == 0) {
             my_fprintf(2, "Usage: history [-chrSLMT] [# number of events].\n");
-        if (data->current_command->argc > 3)
+            return 1;
+        }
+        if (data->current_command->argc > 3) {
             my_fprintf(2, "history: Too many arguments.\n");
-        offset_delete(data, my_getnbr(data->current_command->argv[3]));
+            return 1;
+        }
+        if (data->current_command->argc == 2) {
+            my_fprintf(2, "Usage: history [-chrSLMT] [# number of events].\n");
+            return 1;
+        }
+        data->history = offset_delete(data, my_getnbr(data->current_command->argv[3]));
+        return 0;
+    }
+    if (data->current_command->argc >= 2) {
+        my_fprintf(2, "history: Badly formed number.\n");
+        return 1;
     }
     return 0;
 }

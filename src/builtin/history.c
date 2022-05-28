@@ -21,10 +21,10 @@ int my_nbrlen(int nb)
 
 char *history_maker(char **line, int length, int len, char *clock)
 {
-    char *dest = malloc(sizeof(char) * (length + len + 1));
+    char *dest = malloc(sizeof(char) * (length + len + 2));
 
+    dest = my_strcat(dest, clock);
     for (int i = 0; line[i] != NULL; i++) {
-        dest = my_strcat(dest, clock);
         dest = my_strcat(dest, line[i]);
         dest = my_strcat(dest, " ");
     }
@@ -34,22 +34,21 @@ char *history_maker(char **line, int length, int len, char *clock)
 static int disp_history(sh_data_t *data)
 {
     int len = 0;
-    int space = 1;
+    int space = 0;
     int history_len = 0;
-    int index = data->history_index;
 
     for (;data->history[len] != NULL; len++);
-    history_len = my_nbrlen(len);
-    int nbr = index - len;
+    history_len = my_nbrlen(len) + 1;
+    int nbr = data->history_index - len;
     for (int i = 0; data->history[i] != NULL; i++, nbr++) {
-        if (i == 1)
-            space = history_len - my_nbrlen(i);
+        if (i == 0)
+            space = history_len - my_nbrlen(i) - 1;
         else
-            space = history_len - my_nbrlen(i) + 1;
+            space = history_len - my_nbrlen(i);
         for (; space > 0; space--)
             my_putchar(' ');
         my_put_nbr(nbr + 1);
-        my_putstr("\t");
+        my_putchar('\t');
         my_printf("%s\n", data->history[i]);
     }
     return 0;
@@ -64,17 +63,16 @@ static int disp_history_n(sh_data_t *data, int n)
 
     for (;data->history[len] != NULL; len++);
     history_len = my_nbrlen(len);
-    for (int i = len - n; data->history[i] != NULL; i++) {
-        if (i == 1)
+    int nbr = data->history_index - len;
+    for (int i = len - n; data->history[i] != NULL; i++, nbr++) {
+        if (i == 0)
             space = history_len - my_nbrlen(i);
         else
             space = history_len - my_nbrlen(i) + 1;
         for (; space > 0; space--)
             my_putchar(' ');
-        my_put_nbr(i);
-        my_putstr("  ");
-        //time
-        // my_putstr("  ");
+        my_put_nbr(nbr + 1);
+        my_putchar('\t');
         my_printf("%s\n", data->history[i]);
     }
     return 0;
