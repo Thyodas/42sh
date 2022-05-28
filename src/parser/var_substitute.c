@@ -15,6 +15,7 @@ static char *get_value(sh_data_t *data, char *var)
 {
     char *value;
 
+    var = my_strlen(var) == 2 && var[1] == '?' ? "$status" : var;
     value = get_var_value(data, &var[1]);
     if (!value)
         value = get_env_value(data, &var[1]);
