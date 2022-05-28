@@ -100,6 +100,7 @@ void parse_current_line(sh_data_t *data, char *line)
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
+    //TODO alias_handler(data);
     if (var_substitute(data)) {
         data->last_exit_status = 1;
         return;

@@ -58,6 +58,7 @@
         char **vars;
         char **envp;
         char **line;
+        char ***alias;
         char *old_pwd;
         char *old_path;
         int last_exit_status;
