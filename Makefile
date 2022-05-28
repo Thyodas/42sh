@@ -12,6 +12,7 @@ SRC = src/main.c \
 	  src/execution/vars_utils.c \
 	  src/execution/signal.c \
 	  src/execution/builtin_utils.c \
+	  src/execution/backticks_utils.c \
 	  src/execution/command_error.c \
 	  src/execution/prompt.c \
 	  src/execution/io/retrieve_io.c \
