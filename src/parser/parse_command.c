@@ -28,7 +28,7 @@ int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
 char *init_str(int size);
-void handle_args(sh_data_t *data, char *str, int *i);
+int handle_args(sh_data_t *data, char *str, int *i);
 int var_substitute(sh_data_t *data);
 int handle_backtick(sh_data_t *data);
 
@@ -41,7 +41,7 @@ static const special_token_t TOKEN_LIST[] = {
     {NULL, 0, NULL}
 };
 
-static void fill_command_args(sh_data_t *data, char *str, int *i)
+static void fill_command_args(sh_data_t *data, char *str, int *i, bool *error)
 {
     char *tmp = init_str(my_strlen(str));
     my_strcpy(tmp, str);
@@ -52,7 +52,8 @@ static void fill_command_args(sh_data_t *data, char *str, int *i)
         *i = *i + 1;
         return;
     }
-    handle_args(data, str, i);
+    if (!handle_args(data, str, i))
+        *error = true;
 }
 
 static int parse_next_command(sh_data_t *data, char **line, bool *error)
@@ -65,7 +66,7 @@ static int parse_next_command(sh_data_t *data, char **line, bool *error)
             return i;
         io_token = get_io_token(TOKEN_LIST, line[i]);
         if (io_token.size == 0) {
-            fill_command_args(data, line[i], &i);
+            fill_command_args(data, line[i], &i, error);
             continue;
         }
         line[i + 1] = remove_quote(line[i + 1]);

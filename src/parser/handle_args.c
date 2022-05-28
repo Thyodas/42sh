@@ -21,12 +21,36 @@ static void fill_with_args(sh_data_t *data, char **args, int *i)
     *i = *i + 1;
 }
 
-void handle_args(sh_data_t *data, char *str, int *i)
+static int contains_a_match(char *str)
+{
+    int square_bracket_found = 0;
+    for (int i = 0; str[i] != 0; ++i) {
+        if (str[i] == '*' && (i == 0 || str[i - 1] != '\\'))
+            return 1;
+        if (str[i] == '?' && (i == 0 || str[i - 1] != '\\'))
+            return 1;
+        if (str[i] == '[' && (i == 0 || str[i - 1] != '\\'))
+            square_bracket_found = 1;
+        if (str[i] == ']' && square_bracket_found && str[i - 1] != '\\')
+            return 1;
+    }
+    return 0;
+}
+
+int handle_args(sh_data_t *data, char *str, int *i)
 {
     char **args_without_curly_brackets = handle_curly_brackets(str);
     char **matching_args = handle_match(args_without_curly_brackets);
-    if (matching_args == NULL)
+    if (matching_args == NULL && contains_a_match(str)) {
+        if (data->current_command->argv[0] != NULL)
+            my_fprintf(2, "%s: No match.\n", data->current_command->argv[0]);
+        else
+            my_fprintf(2, "%s: No match.\n", str);
+        *i = *i + 1;
+        return 0;
+    } else if (matching_args == NULL)
         fill_with_args(data, args_without_curly_brackets, i);
     else
         fill_with_args(data, matching_args, i);
+    return 1;
 }
