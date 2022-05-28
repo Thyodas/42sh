@@ -577,3 +577,91 @@ CLEAN=""
 TESTS=
   echo 'echo `ls jexistepa`'
 [958-END]
+
+[959]
+NAME="Handle curly brackets"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "zizi.{exe,sh,html}"'
+[959-END]
+
+[960]
+NAME="Handle square brackets"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls my_s[a-z]gfault"'
+[960-END]
+
+[961]
+NAME="Handle question mark"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls my_s?gfa?lt"'
+[961-END]
+
+[962]
+NAME="Handle wildcard"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls *"'
+[962-END]
+
+[963]
+NAME="Handle multiple globbings"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls {my,tg}_s?g[a-z]*"'
+[963-END]
+
+[964]
+NAME="Handle multiple globbings with subpaths"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls ../l*b/m?/*"'
+[964-END]
+
+[965]
+NAME="Handle globbings in root directory"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls /bin/*"'
+[965-END]
+
+[966]
+NAME="Handle no match"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls dossier*existepas"'
+[966-END]
+
+[967]
+NAME="Handle no match with curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls dossierexistepas{.zizi,.caca}"'
+[967-END]
+
+[968]
+NAME="Handle missing closing curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "echo zizi{.sh"'
+[968-END]
+
+[969]
+NAME="Handle missing opening curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "echo zizi oui,non}"'
+[969-END]
