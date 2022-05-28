@@ -30,10 +30,11 @@ char *clean_str(char *str)
 char *reformat(char *str)
 {
     char *res;
+    int i = 0;
 
-    for (int i = 0; str[i] != '\0'; i++)
+    for (; str[i] != '\0'; i++)
         str[i] = str[i] == '\n' ? ' ' : str[i];
-    str[my_strlen(str) - 1] = '\0';
+    str[i] = '\0';
     res = clean_str(str);
     return (res);
 }
@@ -45,7 +46,7 @@ char **dup_array(char **array)
 
     while (array[i] != NULL)
         i++;
-    res = malloc(sizeof(char *) * i);
+    res = malloc(sizeof(char *) * (i + 1));
     for(int j = 0; j < i; j++)
         res[j] = strdup(array[j]);
     res[i] = NULL;
@@ -89,9 +90,9 @@ int handle_backtick(sh_data_t *data)
     char **oldlines = dup_array(data->line);
     int exit_status = 0;
 
-    for (int i = 0; data->line[i]; i++) {
-        if (data->line[i][0] == '`') {
-            str = get_backticks_value(data, my_strdup(data->line[i]));
+    for (int i = 0; oldlines[i]; i++) {
+        if (oldlines[i][0] == '`') {
+            str = get_backticks_value(data, my_strdup(oldlines[i]));
             free(oldlines[i]);
             str = reformat(str);
             oldlines[i] = my_strdup(str);
