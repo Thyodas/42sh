@@ -33,6 +33,7 @@ SRC = src/main.c \
 	  src/parser/char_test.c \
 	  src/parser/separator_handlers.c \
 	  src/parser/parser_utils.c \
+	  src/parser/backticks.c \
 	  src/parser/var_substitute.c
 
 OBJ = $(SRC:.c=.o)
