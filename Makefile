@@ -26,7 +26,19 @@ SRC = src/main.c \
 	  src/parser/token_handlers.c \
 	  src/parser/char_test.c \
 	  src/parser/separator_handlers.c \
-	  src/parser/parser_utils.c
+	  src/parser/parser_utils.c \
+	  src/parser/handle_curly_brackets.c \
+	  src/parser/parse_square_brackets.c \
+	  src/parser/parse_curly_brackets.c \
+	  src/parser/handle_args.c \
+	  src/parser/path_utils.c \
+	  src/parser/handle_match.c \
+	  src/utils/array.c \
+	  src/utils/parse_files.c \
+	  src/utils/init_str.c \
+	  src/utils/match.c \
+	  src/utils/parse_files_recursively.c \
+	  src/utils/is_a_dir.c
 
 OBJ = $(SRC:.c=.o)
 
