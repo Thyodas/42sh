@@ -485,3 +485,45 @@ TESTS=
   echo 'unset version'
   echo 'unset cdtohome ; unset status _ ; set | /usr/bin/grep -v status'
 [948-END]
+
+[949]
+NAME="Variable: exit status"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $?'
+  echo 'ls jesuisuneerreurls'
+  echo 'echo $?'
+  echo 'echo $?'
+[949-END]
+
+[950]
+NAME="Variable: ~"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo ~'
+  echo 'ls'
+  echo 'cd ~'
+  echo 'ls'
+  echo 'echo ~'
+[950-END]
+
+[951]
+NAME="Variable: term"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $term'
+[951-END]
+
+[952]
+NAME="Variable: _"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls'
+  echo 'echo $_'
+  echo 'echo pipi'
+  echo 'echo $_'
+[952-END]
