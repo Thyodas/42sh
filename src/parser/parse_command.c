@@ -27,6 +27,8 @@ int handle_separators(sh_data_t *data, char **options, bool *error,
 int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
+char *init_str(int size);
+void handle_args(sh_data_t *data, char *str, int *i);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -39,10 +41,16 @@ static const special_token_t TOKEN_LIST[] = {
 
 static void fill_command_args(sh_data_t *data, char *str, int *i)
 {
+    char *tmp = init_str(my_strlen(str));
+    my_strcpy(tmp, str);
     str = remove_quote(str);
-    extend_array(&data->current_command->argv, str);
-    data->current_command->argc++;
-    *i = *i + 1;
+    if (my_strcmp(tmp, str) != 0) {
+        extend_array(&data->current_command->argv, str);
+        data->current_command->argc++;
+        *i = *i + 1;
+        return;
+    }
+    handle_args(data, str, i);
 }
 
 static int parse_next_command(sh_data_t *data, char **line, bool *error)
