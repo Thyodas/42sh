@@ -52,21 +52,30 @@ static void should_i_replace(sh_data_t *data, char **alias, unsigned int i)
 {
     if(my_strcmp(INPUT[i], alias[0]) != 0)
         return;
-    unsigned int mehdy = 0;
+    unsigned int i_input = 0;
+    unsigned int i_alias = 1;
+    unsigned int i_new = 0;
     unsigned int size_input = 1;
     unsigned int size_alias = 1;
     for (; INPUT[size_input]; ++size_input);
     for (; alias[size_alias]; ++size_alias);
-    char **new_input = malloc(sizeof(char *) * (--size_input + size_alias--));
+    char **new_input = malloc(sizeof(char *) * (size_input + size_alias--));
     new_input[size_input + size_alias] = NULL;
-    for (; mehdy < i; ++mehdy)
-        new_input[mehdy] = INPUT[mehdy];
-    for (; alias[mehdy - i + 1]; ++mehdy)
-        new_input[mehdy] = alias[mehdy - i + 1];
-    for (; INPUT[mehdy - (size_input - 2)]; ++mehdy)
-        new_input[mehdy] = INPUT[mehdy - (size_input - 2)];
-}
 
+    for (; i_new < i; ++i_new, ++i_input)
+        new_input[i_new] = INPUT[i_input];
+
+    for (; alias[i_alias]; ++i_new, ++i_alias)
+        new_input[i_new] = alias[i_alias];
+
+    for (++i_input; INPUT[i_input]; ++i_new, ++i_input)
+        new_input[i_new] = INPUT[i_input];
+
+    INPUT = new_input;
+}
+// alias tmp ls -a -p
+// echo Hello; tmp ; echo World; echo
+// echo Hello ; ls -a -p
 int alias_handler(sh_data_t *data)
 {
     //TODO error_handling
