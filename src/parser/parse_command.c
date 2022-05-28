@@ -28,6 +28,7 @@ int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
 int var_substitute(sh_data_t *data);
+int alias_handler(sh_data_t *data);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -102,7 +103,7 @@ void parse_current_line(sh_data_t *data, char *line)
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
-    //TODO alias_handler(data);
+    alias_handler(data);
     if (var_substitute(data)) {
         data->last_exit_status = 1;
         return;

@@ -92,6 +92,7 @@
         {"exit", &builtin_exit},
         {"where", &builtin_where},
         {"which", &builtin_which},
+        {"alias", &builtin_alias},
         {"repeat", &builtin_repeat}
     };
 
