@@ -44,7 +44,7 @@ SRC = src/main.c \
 	  src/utils/init_str.c \
 	  src/utils/match.c \
 	  src/utils/parse_files_recursively.c \
-	  src/utils/is_a_dir.c
+	  src/utils/is_a_dir.c \
 	  src/parser/backticks.c \
 	  src/parser/var_substitute.c
 
