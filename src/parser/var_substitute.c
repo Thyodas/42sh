@@ -53,12 +53,10 @@ int substitution(sh_data_t *data, int *i)
 {
     char *variable;
     char *new_cmd;
-    char *value;
     int len;
-
     handle_home(data, i);
     if ((variable = my_strstr(data->line[*i], "$")) != NULL) {
-        value = get_value(data, variable);
+        char *value = get_value(data, variable);
         if (!value)
             return (1);
         len = (my_strlen(data->line[*i]) - my_strlen(variable) +
