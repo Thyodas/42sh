@@ -8,11 +8,29 @@
 #include "shell.h"
 #include "my.h"
 
-void replace_newline(char *str)
+char *clean_str(char *str)
+{
+    char *res = malloc(sizeof(char) * (my_strlen(str) + 1));
+    int a = 0;
+
+    for (int i = 0; i < my_strlen(str); res[i++] = 0);
+    while (str[0] == '\t' || str[0] == ' ')
+        str++;
+    for (int i = 0; str[i] != '\0'; i++) {
+        (str[i] == ' ' || str[i] == '\t') ?
+        (str[i + 1] == ' ' || str[i + 1] == '\t' || str[i + 1] == '\0') ?
+        0 : (1 == 1) ? res[a++] = ' ' : 0 : (1 == 1) ? res[a++] = str[i] : 0;
+    }
+    res[a] = '\0';
+    return (res);
+}
+
+char *reformat(char *str)
 {
     for (int i = 0; str[i] != '\0'; i++)
         str[i] = str[i] == '\n' ? ' ' : str[i];
     str[my_strlen(str) - 1] = '\0';
+    return (clean_str(str));
 }
 
 char **dup_array(char **array)
@@ -36,6 +54,7 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
     char buffer[message_size];
     int old_out = dup(STDOUT_FILENO);
     int status = 0;
+    ssize_t size;
 
     if (pipe(fd) == -1) {
         perror("pipe");
@@ -49,7 +68,8 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
     parse_current_line(data, cmd);
     wait(&status);
     close(fd[1]);
-    read(fd[0], buffer, message_size);
+    size = read(fd[0], buffer, message_size);
+    buffer[size] = '\0';
     close(fd[0]);
     close(STDOUT_FILENO);
     dup2(old_out, STDOUT_FILENO);
@@ -59,15 +79,15 @@ char *get_backticks_value(sh_data_t *data, char *cmd)
 
 void handle_backtick(sh_data_t *data)
 {
-    char *res;
+    char *str;
     char **oldlines = dup_array(data->line);
 
     for (int i = 0; data->line[i]; i++) {
         if (data->line[i][0] == '`') {
-            res = get_backticks_value(data, my_strdup(data->line[i]));
+            str = get_backticks_value(data, my_strdup(data->line[i]));
             free(oldlines[i]);
-            replace_newline(res);
-            oldlines[i] = my_strdup(res);
+            str = reformat(str);
+            oldlines[i] = my_strdup(str);
         }
     }
     data->line = oldlines;

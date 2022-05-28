@@ -537,3 +537,19 @@ TESTS=
   echo 'repeat 2 ls | cat -e'
   echo 'repeat azdsdadazd'
 [953-END]
+
+[954]
+NAME="Backticks 1"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls`'
+[954-END]
+
+[955]
+NAME="Backticks 2"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l`'
+[955-END]
