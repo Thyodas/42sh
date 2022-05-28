@@ -29,6 +29,8 @@ special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
 char *init_str(int size);
 void handle_args(sh_data_t *data, char *str, int *i);
+int var_substitute(sh_data_t *data);
+int handle_backtick(sh_data_t *data);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -102,12 +104,24 @@ static void parse_command_and_exec(sh_data_t *data, int len)
 
 void parse_current_line(sh_data_t *data, char *line)
 {
+    char status[10];
+    int backticks_exit_status = 0;
+
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
     data->line = line_to_array(line);
     if (data->line == NULL || data->line[0] == NULL)
         return;
+    if (var_substitute(data)) {
+        data->last_exit_status = 1;
+        return;
+    }
+    backticks_exit_status = handle_backtick(data);
     int len = 0;
     for (; data->line[len] != NULL; len++);
     parse_command_and_exec(data, len);
+    if (data->last_exit_status == 0)
+        data->last_exit_status = backticks_exit_status;
+    sprintf(status, "%d", data->last_exit_status);
+    set_var_value(data, "status", status);
 }

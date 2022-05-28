@@ -320,3 +320,260 @@ CLEAN=""
 TESTS=
   echo './wrong_archi'
 [935-END]
+
+[936]
+NAME="Exec a directory"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo '/usr'
+[936-END]
+
+[937]
+NAME="PATH 5"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='/random'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo './ls'
+  echo 'ls'
+[937-END]
+
+[938]
+NAME="Where builtin - valid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'where ls'
+  echo 'where bash'
+[938-END]
+
+[939]
+NAME="Where builtin - invalid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'where /ls'
+  echo 'where ls lss'
+  echo 'where bash bashhhh'
+[939-END]
+
+[940]
+NAME="Where builtin - special"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='.'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo 'where ls'
+[940-END]
+
+[941]
+NAME="Which builtin - valid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'which ls'
+  echo 'which bash'
+[941-END]
+
+[942]
+NAME="Which builtin - invalid tests"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'which ls lss'
+  echo 'which bash bashhhh'
+[942-END]
+
+[943]
+NAME="Which builtin - special"
+SETUP="cp /usr/bin/ls . ; OLDPATH=$PATH ; PATH='.'"
+CLEAN="PATH=$OLDPATH ; rm ls"
+TESTS=
+  echo 'which ls'
+[943-END]
+
+[944]
+NAME="Variables first"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a=at'
+  echo 'ls | c$a -e'
+  echo 'unset a'
+[944-END]
+
+[945]
+NAME="Variables with env"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cd /'
+  echo 'ls'
+  echo 'echo $PWD'
+  echo 'set PWD=jesuisunpwd'
+  echo 'echo $PWD'
+  echo 'unset PWD'
+  echo 'echo $PWD'
+[945-END]
+
+[946]
+NAME="Variables with spaces"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a = b'
+  echo 'echo $a'
+  echo 'set a= b'
+  echo 'echo $a'
+  echo 'echo $b'
+  echo 'set a =b'
+[946-END]
+
+[947]
+NAME="Variable: undefined variable"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $a'
+[947-END]
+
+[948]
+NAME="Variables show var"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'set a = b'
+  echo 'echo $a'
+  echo 'set a= b'
+  echo 'echo $a'
+  echo 'echo $b'
+  echo 'set a = "Salut tout le monde, cest david la farge pokemon"'
+  echo 'echo REMOVING USELESS     VARIABLES'
+  echo 'unset addsuffix'
+  echo 'unset anyerror'
+  echo 'unset argv'
+  echo 'unset argv'
+  echo 'unset autoexpand'
+  echo 'unset autolist'
+  echo 'unset cstohome'
+  echo 'unset csubstnonl'
+  echo 'unset cwd'
+  echo 'unset dir'
+  echo 'unset dirstack'
+  echo 'unset echo_style'
+  echo 'unset edit'
+  echo 'unset euid'
+  echo 'unset euser'
+  echo 'unset gid'
+  echo 'unset group'
+  echo 'unset history'
+  echo 'unset home'
+  echo 'unset killring'
+  echo 'unset owd'
+  echo 'unset path'
+  echo 'unset p/bin'
+  echo 'unset prompt'
+  echo 'unset prompt2'
+  echo 'unset prompt3'
+  echo 'unset shell'
+  echo 'unset shlvl'
+  echo 'unset status'
+  echo 'unset tcsh'
+  echo 'unset term'
+  echo 'unset tty'
+  echo 'unset uid'
+  echo 'unset user'
+  echo 'unset version'
+  echo 'unset cdtohome ; unset status _ ; set | /usr/bin/grep -v status'
+[948-END]
+
+[949]
+NAME="Variable: exit status"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $?'
+  echo 'ls jesuisuneerreurls'
+  echo 'echo $?'
+  echo 'echo $?'
+[949-END]
+
+[950]
+NAME="Variable: ~"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo ~'
+  echo 'ls'
+  echo 'cd ~'
+  echo 'ls'
+  echo 'echo ~'
+[950-END]
+
+[951]
+NAME="Variable: term"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo $term'
+[951-END]
+
+[952]
+NAME="Variable: _"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'ls'
+  echo 'echo $_'
+  echo 'echo pipi'
+  echo 'echo $_'
+[952-END]
+
+[953]
+NAME="Repeat builtin"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'repeat 10 echo "coucou comment        ça va " "?"'
+  echo 'repeat 2 ls | cat -e'
+  echo 'repeat azdsdadazd'
+[953-END]
+
+[954]
+NAME="Backticks 1"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls`'
+[954-END]
+
+[955]
+NAME="Backticks 2"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l`'
+[955-END]
+
+[956]
+NAME="Backticks 3"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `tree`'
+[956-END]
+
+[957]
+NAME="Backticks 4"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l | cat -e`'
+[957-END]
+
+[958]
+NAME="Backticks with error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls jexistepa`'
+[958-END]

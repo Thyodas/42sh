@@ -9,6 +9,7 @@ SRC = src/main.c \
 	  src/memory/mem_shell.c \
 	  src/execution/command.c \
 	  src/execution/env_utils.c \
+	  src/execution/vars_utils.c \
 	  src/execution/signal.c \
 	  src/execution/builtin_utils.c \
 	  src/execution/command_error.c \
@@ -17,10 +18,15 @@ SRC = src/main.c \
 	  src/execution/io/heredoc.c \
 	  src/execution/io/pipe.c \
 	  src/builtin/cd.c \
+	  src/builtin/set.c \
 	  src/builtin/setenv.c \
 	  src/builtin/exit.c \
+	  src/builtin/unset.c \
 	  src/builtin/unsetenv.c \
 	  src/builtin/env.c \
+	  src/builtin/where.c \
+	  src/builtin/which.c \
+	  src/builtin/repeat.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \
@@ -39,6 +45,8 @@ SRC = src/main.c \
 	  src/utils/match.c \
 	  src/utils/parse_files_recursively.c \
 	  src/utils/is_a_dir.c
+	  src/parser/backticks.c \
+	  src/parser/var_substitute.c
 
 OBJ = $(SRC:.c=.o)
 
