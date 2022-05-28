@@ -90,7 +90,8 @@
         {"env", &builtin_env},
         {"exit", &builtin_exit},
         {"where", &builtin_where},
-        {"which", &builtin_which}
+        {"which", &builtin_which},
+        {"repeat", &builtin_repeat}
     };
 
     #define BUILTIN_NB (sizeof(BUILTIN_JUMP_TABLE) / sizeof(builtin_t))

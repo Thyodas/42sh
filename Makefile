@@ -26,6 +26,7 @@ SRC = src/main.c \
 	  src/builtin/env.c \
 	  src/builtin/where.c \
 	  src/builtin/which.c \
+	  src/builtin/repeat.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \

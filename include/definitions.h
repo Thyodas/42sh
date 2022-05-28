@@ -53,6 +53,9 @@
     // builtin/which.c
     int builtin_which(sh_data_t *data);
 
+    // builtin/repeat.c
+    int builtin_repeat(sh_data_t *data);
+
     /*
     Execution
     */
