@@ -15,23 +15,43 @@ char *reformat(char *str);
 char **dup_array(char **array);
 void close_dup(int a, int b);
 
+static char *read_fd(int fd)
+{
+    char buf[1024] = {0};
+    int size;
+    int total_size = 0;
+    char *previous = NULL;
+    char *str = my_strdup("");
+
+    while ((size = read(fd, buf, 1024))) {
+        previous = str;
+        str = malloc(total_size + size + 1);
+        my_strncpy(str, previous, total_size);
+        my_strncpy(str + total_size, buf, size);
+        total_size += size;
+        str[total_size] = '\0';
+        free(previous);
+    }
+    return (str);
+}
+
 static char *sheitan_part(sh_data_t *data, char *cmd, int old_out, int fd[2])
 {
-    int message_size = 1024;
-    char buffer[message_size];
-    ssize_t size;
+    char *buffer;
 
-    close_dup(fd[1], STDOUT_FILENO);
-    parse_current_line(data, cmd);
-    close(fd[1]);
-    if (data->last_exit_status == 0) {
-        size = read(fd[0], buffer, message_size);
-        buffer[size] = '\0';
-    } else
-        buffer[0] = '\0';
-    close(fd[0]);
-    close_dup(old_out, STDOUT_FILENO);
-    return (my_strdup(buffer));
+    int pid = fork();
+    if (pid == 0) {
+        close(fd[0]);
+        dup2(fd[1], 1);
+        parse_current_line(data, cmd);
+        close(fd[1]);
+        exit(0);
+    } else {
+        close(fd[1]);
+        buffer = read_fd(fd[0]);
+        close(fd[0]);
+    }
+    return (buffer);
 }
 
 char *get_backticks_value(sh_data_t *data, char *cmd)
