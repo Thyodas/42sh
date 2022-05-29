@@ -75,10 +75,23 @@ static void replace_alias(sh_data_t *data, unsigned int size, unsigned int i)
     ALIAS[i] = new_alias;
 }
 
+unsigned int my_3d_array_len(char ***array)
+{
+    unsigned int size = 0;
+    for (; array[size] != NULL; ++size);
+    return size;
+}
+
+int compare(const void *a, const void *b)
+{
+    return my_strcmp(**(char ***)a, **(char ***)b);
+}
+
 int builtin_alias(sh_data_t *data)
 {
     unsigned int size = 0;
     if (ARGC == 1) {
+        qsort(ALIAS, my_3d_array_len(ALIAS), sizeof(char **), compare);
         for (unsigned int u = 0; ALIAS[u]; ++u)
             show_alias(data, u);
         return 0;
