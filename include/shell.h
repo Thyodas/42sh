@@ -23,9 +23,12 @@
 
     #include <errno.h>
 
+    #include "my_list.h"
+
     typedef struct command_s {
         char **argv;
         int argc;
+        int pid;
         int read_fd;
         int write_fd;
         int output_type;
@@ -66,6 +69,7 @@
         pid_t child_pid;
         bool is_prompt_mode;
         bool execute_binary;
+        linked_list_t *suspended_command;
         command_t *current_command;
     } sh_data_t;
 
@@ -93,7 +97,8 @@
         {"where", &builtin_where},
         {"which", &builtin_which},
         {"alias", &builtin_alias},
-        {"repeat", &builtin_repeat}
+        {"repeat", &builtin_repeat},
+        {"fg", &job_control}
     };
 
     #define BUILTIN_NB (sizeof(BUILTIN_JUMP_TABLE) / sizeof(builtin_t))

@@ -29,6 +29,7 @@
     int my_putstr(char const *str);
     char *my_revstr(char *str);
     int my_show_word_array(char * const *tab);
+    char **my_str_to_word_array(char const *str);
     int my_showmem(char const *str, int size);
     int my_showstr(char const *str);
     void my_sort_int_array(int *array, int size);

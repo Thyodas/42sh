@@ -17,6 +17,7 @@ int is_char_blank(char c);
 int is_char_special(char c);
 int is_char_valid(char c);
 int is_quote(int c);
+void extend_array(char ***array, char *new_line);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, NULL},
@@ -31,19 +32,6 @@ static const special_token_t TOKEN_LIST[] = {
     {NULL, 0, NULL}
 };
 
-void extend_array(char ***array, char *new_line)
-{
-    int size = 0;
-    for (; (*array)[size] != NULL; ++size);
-    char **new_array = malloc(sizeof(char *) * (size + 2));
-    for (int i = 0; i < size; ++i)
-        new_array[i] = (*array)[i];
-    new_array[size] = new_line;
-    new_array[size + 1] = NULL;
-    free(*array);
-    *array = new_array;
-}
-
 int get_str_by_condition(char ***array, const char *str,
 int (*condition)(char c))
 {
@@ -56,9 +44,8 @@ int (*condition)(char c))
     return (size);
 }
 
-int quote_handling(char ***array, const char *str)
+int quote_handling(char ***array, const char *str, char quote)
 {
-    char quote = str[0];
     int size = 1;
 
     for (; str[size] != quote; ++size)
@@ -83,8 +70,8 @@ int handle_char(char ***array, const char *str, int pos)
             return (TOKEN_LIST[i].size);
         }
     }
-    if (is_quote(str[pos])) {
-        return (quote_handling(array, str + pos));
+    if (is_quote(str[pos]) && (pos == 0 || str[pos - 1] != '\\')) {
+        return (quote_handling(array, str + pos, str[pos]));
     }
     if (is_char_valid(str[pos])) {
         return (get_str_by_condition(array, str + pos, &is_char_valid));

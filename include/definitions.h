@@ -59,6 +59,9 @@
     // builtin/alias.c
     int builtin_alias(sh_data_t *data);
 
+    //builtin/fg.c
+    int job_control(sh_data_t *data);
+
     /*
     Execution
     */

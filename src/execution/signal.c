@@ -34,7 +34,14 @@ void handle_interrupt(__attribute__((unused)) int signal)
     return;
 }
 
+void handle_stop_in_main(__attribute__((unused)) int signal)
+{
+    return;
+}
+
 void sig_handler(void)
 {
     signal(SIGINT, handle_interrupt);
+    signal(SIGTSTP, handle_stop_in_main);
+    signal(SIGCONT, SIG_DFL);
 }

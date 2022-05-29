@@ -537,3 +537,211 @@ TESTS=
   echo 'repeat 2 ls | cat -e'
   echo 'repeat azdsdadazd'
 [953-END]
+
+[954]
+NAME="Backticks 1"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls`'
+[954-END]
+
+[955]
+NAME="Backticks 2"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l`'
+[955-END]
+
+[956]
+NAME="Backticks 3"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `tree`'
+[956-END]
+
+[957]
+NAME="Backticks 4"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls -l | cat -e`'
+[957-END]
+
+[958]
+NAME="Backticks with error"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `ls jexistepa`'
+[958-END]
+
+[959]
+NAME="Handle curly brackets"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "zizi.{exe,sh,html}"'
+[959-END]
+
+[960]
+NAME="Handle square brackets"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls my_s[a-z]gfault"'
+[960-END]
+
+[961]
+NAME="Handle question mark"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls my_s?gfa?lt"'
+[961-END]
+
+[962]
+NAME="Handle wildcard"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls *"'
+[962-END]
+
+[963]
+NAME="Handle multiple globbings"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls {my,tg}_s?g[a-z]*"'
+[963-END]
+
+[964]
+NAME="Handle multiple globbings with subpaths"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls ../l*b/m?/*"'
+[964-END]
+
+[965]
+NAME="Handle globbings in root directory"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls /bin/*"'
+[965-END]
+
+[966]
+NAME="Handle no match"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls dossier*existepas"'
+[966-END]
+
+[967]
+NAME="Handle no match with curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "ls dossierexistepas{.zizi,.caca}"'
+[967-END]
+
+[968]
+NAME="Handle missing closing curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "echo zizi{.sh"'
+[968-END]
+
+[969]
+NAME="Handle missing opening curly"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "echo zizi oui,non}"'
+[969-END]
+
+[970]
+NAME="Inhibitor with basic char"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_basic_char'
+[970-END]
+
+[971]
+NAME="Inhibitor with multiple basic char"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_multiple_basic_char'
+[971-END]
+
+[972]
+NAME="Inhibitor globbings"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_globbings'
+[972-END]
+
+[973]
+NAME="Inhibitor globbings with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_globbings_with_quotes'
+[973-END]
+
+[974]
+NAME="Inhibitor with basic char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_basic_char_without_quotes'
+[974-END]
+
+[975]
+NAME="Inhibitor with multiple basic char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_multiple_basic_char_without_quotes'
+[975-END]
+
+[976]
+NAME="Complex inhibitors without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Complex_inhibitors_without_quotes'
+[976-END]
+
+[977]
+NAME="Complex inhibitors with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Complex_inhibitors_with_quotes'
+[977-END]
+
+[978]
+NAME="Inhibitors with wrong char with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_wrong_char_with_quotes'
+[978-END]
+
+[979]
+NAME="Inhibitors with wrong char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_wrong_char_without_quotes'
+[979-END]

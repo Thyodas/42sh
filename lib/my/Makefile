@@ -23,6 +23,7 @@ SRC = check_overflow.c \
 	  my_showmem.c \
 	  my_showstr.c \
 	  my_sort_int_array.c \
+	  my_str_to_word_array.c \
 	  my_str_isalpha.c \
 	  my_str_islower.c \
 	  my_str_isnum.c \

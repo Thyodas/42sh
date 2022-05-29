@@ -27,8 +27,12 @@ int handle_separators(sh_data_t *data, char **options, bool *error,
 int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
+char *init_str(int size);
+int handle_args(sh_data_t *data, char *str, int *i);
 int var_substitute(sh_data_t *data);
 int alias_handler(sh_data_t *data);
+int handle_backtick(sh_data_t *data);
+char *handle_ascii_inhib(char *str);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -39,12 +43,20 @@ static const special_token_t TOKEN_LIST[] = {
     {NULL, 0, NULL}
 };
 
-static void fill_command_args(sh_data_t *data, char *str, int *i)
+static void fill_command_args(sh_data_t *data, char *str, int *i, bool *error)
 {
+    char *tmp = init_str(my_strlen(str));
+    my_strcpy(tmp, str);
     str = remove_quote(str);
-    extend_array(&data->current_command->argv, str);
-    data->current_command->argc++;
-    *i = *i + 1;
+    if (my_strcmp(tmp, str) != 0) {
+        str = handle_ascii_inhib(str);
+        extend_array(&data->current_command->argv, str);
+        data->current_command->argc++;
+        *i = *i + 1;
+        return;
+    }
+    if (!handle_args(data, str, i))
+        *error = true;
 }
 
 static int parse_next_command(sh_data_t *data, char **line, bool *error)
@@ -57,7 +69,7 @@ static int parse_next_command(sh_data_t *data, char **line, bool *error)
             return i;
         io_token = get_io_token(TOKEN_LIST, line[i]);
         if (io_token.size == 0) {
-            fill_command_args(data, line[i], &i);
+            fill_command_args(data, line[i], &i, error);
             continue;
         }
         line[i + 1] = remove_quote(line[i + 1]);
@@ -97,6 +109,7 @@ static void parse_command_and_exec(sh_data_t *data, int len)
 void parse_current_line(sh_data_t *data, char *line)
 {
     char status[10];
+    int backticks_exit_status = 0;
 
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
@@ -108,9 +121,12 @@ void parse_current_line(sh_data_t *data, char *line)
         data->last_exit_status = 1;
         return;
     }
+    backticks_exit_status = handle_backtick(data);
     int len = 0;
     for (; data->line[len] != NULL; len++);
     parse_command_and_exec(data, len);
+    if (data->last_exit_status == 0)
+        data->last_exit_status = backticks_exit_status;
     sprintf(status, "%d", data->last_exit_status);
     set_var_value(data, "status", status);
 }
