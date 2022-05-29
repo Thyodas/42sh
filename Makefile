@@ -40,14 +40,17 @@ SRC = src/main.c \
 	  src/parser/handle_args.c \
 	  src/parser/path_utils.c \
 	  src/parser/handle_match.c \
+	  src/parser/backticks.c \
+	  src/parser/var_substitute.c \
+	  src/parser/handle_ascii_inhibitors.c \
 	  src/utils/array.c \
 	  src/utils/parse_files.c \
 	  src/utils/init_str.c \
 	  src/utils/match.c \
 	  src/utils/parse_files_recursively.c \
 	  src/utils/is_a_dir.c \
-	  src/parser/backticks.c \
-	  src/parser/var_substitute.c
+	  src/utils/delete_char_from_string.c \
+	  src/utils/insert_char_in_str.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -10,11 +10,22 @@
 
 char **handle_curly_brackets(char *str);
 char **handle_match(char **args);
-void extend_array(char ***array, char *new_line);;
+void extend_array(char ***array, char *new_line);
+char *delete_char_from_string(char *str, int pos);
+
+static char *remove_inhibitors(char *str)
+{
+    for (int i = 0; str[i] != 0; ++i) {
+        if (str[i] == '\\')
+            str = delete_char_from_string(str, i);
+    }
+    return str;
+}
 
 static void fill_with_args(sh_data_t *data, char **args, int *i)
 {
     for (int i = 0; args[i] != 0; ++i) {
+        args[i] = remove_inhibitors(args[i]);
         extend_array(&data->current_command->argv, args[i]);
         data->current_command->argc++;
     }

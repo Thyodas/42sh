@@ -31,6 +31,7 @@ char *init_str(int size);
 int handle_args(sh_data_t *data, char *str, int *i);
 int var_substitute(sh_data_t *data);
 int handle_backtick(sh_data_t *data);
+char *handle_ascii_inhib(char *str);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -47,6 +48,7 @@ static void fill_command_args(sh_data_t *data, char *str, int *i, bool *error)
     my_strcpy(tmp, str);
     str = remove_quote(str);
     if (my_strcmp(tmp, str) != 0) {
+        str = handle_ascii_inhib(str);
         extend_array(&data->current_command->argv, str);
         data->current_command->argc++;
         *i = *i + 1;
