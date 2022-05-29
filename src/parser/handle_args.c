@@ -40,6 +40,10 @@ static int contains_a_match(char *str)
 int handle_args(sh_data_t *data, char *str, int *i)
 {
     char **args_without_curly_brackets = handle_curly_brackets(str);
+    if (args_without_curly_brackets == NULL) {
+        *i = *i + 1;
+        return 0;
+    }
     char **matching_args = handle_match(args_without_curly_brackets);
     if (matching_args == NULL && contains_a_match(str)) {
         if (data->current_command->argv[0] != NULL)

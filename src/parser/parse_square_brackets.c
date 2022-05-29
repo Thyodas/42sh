@@ -78,7 +78,8 @@ static void add_tmp_in_list(linked_list_t **list_globs, globbings_t *tmp,
     my_strncpy(glob->inside_square, &str[glob->pos_square_open + 1],
                 glob->size_square - 1);
     fill_replacable(glob);
-    my_add_node(glob, list_globs);
+    if (glob->char_replacable != NULL)
+        my_add_node(glob, list_globs);
     *tmp = init_globbings();
 }
 
