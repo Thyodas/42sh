@@ -8,7 +8,7 @@
 #include "my.h"
 #include "shell.h"
 
-int is_quote(int c);;
+int is_quote(int c);
 
 special_token_t get_io_token(const special_token_t *token_list, char *str)
 {
