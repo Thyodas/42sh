@@ -63,13 +63,18 @@ static int compare(const void *a, const void *b)
 int builtin_alias(sh_data_t *data)
 {
     unsigned int size = 0;
-    if (ARGC == 1) {
+    if (ARGC <= 1) {
         qsort(ALIAS, my_3d_array_len(ALIAS), sizeof(char **), compare);
         for (unsigned int u = 0; ALIAS[u]; ++u)
             show_alias(data, u);
         return 0;
-    } else if (ARGC == 2)
+    }
+    if (ARGC == 2)
         return 0;
+    if (my_strcmp(ARGV[1], "alias") == 0) {
+        my_fprintf(2, "%s: Too dangerous to alias that.\n", ARGV[0]);
+        return (1);
+    }
     for (unsigned int i = 0; ALIAS[i]; ++i) {
         if (my_strcmp(ALIAS[i][0], ARGV[1]) == 0) {
             replace_alias(data, size, i);
