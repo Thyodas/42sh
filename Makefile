@@ -48,6 +48,7 @@ SRC = src/main.c \
 	  src/parser/var_substitute.c \
 	  src/parser/handle_ascii_inhibitors.c \
 	  src/utils/array.c \
+	  src/utils/threed_array.c \
 	  src/utils/parse_files.c \
 	  src/utils/init_str.c \
 	  src/utils/match.c \

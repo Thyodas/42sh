@@ -8,30 +8,9 @@
 #include "my.h"
 #include "shell.h"
 #include "define.h"
-
-/// UTILS ///
-
-static void extend_3d_array(char ****array, char **new_line)
-{
-    int size = 0;
-    for (; (*array)[size] != NULL; ++size);
-    char ***new_array = malloc(sizeof(char **) * (size + 2));
-    for (int i = 0; i < size; ++i)
-        new_array[i] = (*array)[i];
-    new_array[size] = new_line;
-    new_array[size + 1] = NULL;
-    free(*array);
-    *array = new_array;
-}
-
-static unsigned int array_len (char **array)
-{
-    unsigned int size = 0;
-    for (; array[size] != NULL; ++size);
-    return size;
-}
-
-/// BUILTIN_ALIAS ///
+int len_array(char **array);
+unsigned int my_3d_array_len(char ***array);
+void extend_3d_array(char ****array, char **new_line);
 
 static int add_new_alias(sh_data_t *data)
 {
@@ -49,14 +28,14 @@ static int add_new_alias(sh_data_t *data)
 static void show_alias(sh_data_t *data, unsigned int u)
 {
     my_printf("%s\t", ALIAS[u][0]);
-    if (array_len(ALIAS[u]) > 2)
+    if (len_array(ALIAS[u]) > 2)
         my_printf("(");
     for (unsigned int v = 1; ALIAS[u][v]; ++v) {
         my_printf("%s", ALIAS[u][v]);
         if (ALIAS[u][v + 1])
             my_printf(" ");
     }
-    if (array_len(ALIAS[u]) > 2)
+    if (len_array(ALIAS[u]) > 2)
         my_printf(")\n");
     else
         my_printf("\n");
@@ -75,14 +54,7 @@ static void replace_alias(sh_data_t *data, unsigned int size, unsigned int i)
     ALIAS[i] = new_alias;
 }
 
-unsigned int my_3d_array_len(char ***array)
-{
-    unsigned int size = 0;
-    for (; array[size] != NULL; ++size);
-    return size;
-}
-
-int compare(const void *a, const void *b)
+static int compare(const void *a, const void *b)
 {
     return my_strcmp(**(char ***)a, **(char ***)b);
 }
