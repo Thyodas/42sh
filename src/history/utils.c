@@ -88,7 +88,9 @@ int history_delete(sh_data_t *data)
     data->history = malloc(sizeof(char *));
     data->history[0] = my_strdup("");
     if (data->current_command->argc > 2
-    && my_str_isnum(data->current_command->argv[2]) == 0)
+    && my_str_isnum(data->current_command->argv[2]) == 0) {
         my_fprintf(2, "history: Badly formed number.\n");
+        return 1;
+    }
     return 0;
 }

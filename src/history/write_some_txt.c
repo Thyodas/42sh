@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <my.h>
-    #define BLOCK_SIZE 3000
+    //#define BLOCK_SIZE 3000
 
 void writeFile(const char *filename, char *txt)
 {
@@ -17,17 +17,18 @@ void writeFile(const char *filename, char *txt)
     int returnCode = 0;
     FILE *stream = fopen(filename, "w");
     
-    if ( stream == NULL ) {
-        fprintf( stderr, "Cannot open file for writing\n" );
+    if (stream == NULL) {
+        fprintf(stderr, "Cannot open file for writing\n");
         exit( -1 );
     }
     sprintf(buffer, "%s", txt);
-    if (1 != fwrite(buffer, BLOCK_SIZE, 1, stream))
-        fprintf( stderr, "Cannot write block in file\n" );
+    size_t size = my_strlen(txt);
+    if (1 != fwrite(buffer, size, 1, stream))
+        fprintf(stderr, "Cannot write block in file\n" );
     returnCode = fclose(stream);
-    if ( returnCode == EOF ) {
-        fprintf( stderr, "Cannot close file\n" );
-        exit( -1 );
+    if (returnCode == EOF) {
+        fprintf(stderr, "Cannot close file\n" );
+        exit(-1);
     }
 }
 

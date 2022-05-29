@@ -327,7 +327,28 @@ SETUP=""
 CLEAN=""
 TESTS=
   echo 'history'
-  echo 'history -h'
-  echo 'history -r'
-  echo 'history -c'
 [936-END]
+
+[937]
+NAME="history -h test"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'history -h'
+[937-END]
+
+[938]
+NAME="history -r test"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'history -r'
+[938-END]
+
+[939]
+NAME="history -c test"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'history -c'
+[939-END]
