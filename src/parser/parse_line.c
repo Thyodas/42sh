@@ -44,9 +44,8 @@ int (*condition)(char c))
     return (size);
 }
 
-int quote_handling(char ***array, const char *str)
+int quote_handling(char ***array, const char *str, char quote)
 {
-    char quote = str[0];
     int size = 1;
 
     for (; str[size] != quote; ++size)
@@ -71,8 +70,8 @@ int handle_char(char ***array, const char *str, int pos)
             return (TOKEN_LIST[i].size);
         }
     }
-    if (is_quote(str[pos])) {
-        return (quote_handling(array, str + pos));
+    if (is_quote(str[pos]) && (pos == 0 || str[pos - 1] != '\\')) {
+        return (quote_handling(array, str + pos, str[pos]));
     }
     if (is_char_valid(str[pos])) {
         return (get_str_by_condition(array, str + pos, &is_char_valid));
