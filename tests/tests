@@ -776,3 +776,14 @@ TESTS=
   echo 'alias'
   echo 'hihi'
 [982-END]
+
+[983]
+NAME="Alias show sorted"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias hihi ls'
+  echo 'alias haha ls'
+  echo 'alias'
+  echo 'hihi;haha'
+[983-END]
