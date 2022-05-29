@@ -50,3 +50,10 @@ char **dup_array(char **array)
     res[i] = NULL;
     return (res);
 }
+
+void close_dup(int a, int b)
+{
+    close(b);
+    dup2(a, b);
+    close(a);
+}
