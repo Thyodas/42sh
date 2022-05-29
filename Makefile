@@ -22,6 +22,7 @@ SRC = src/main.c \
 	  src/execution/exec_utils.c \
 	  src/builtin/cd.c \
 	  src/builtin/set.c \
+	  src/builtin/history.c \
 	  src/builtin/setenv.c \
 	  src/builtin/exit.c \
 	  src/builtin/unset.c \
@@ -57,7 +58,10 @@ SRC = src/main.c \
 	  src/utils/parse_files_recursively.c \
 	  src/utils/is_a_dir.c \
 	  src/utils/delete_char_from_string.c \
-	  src/utils/insert_char_in_str.c
+	  src/utils/insert_char_in_str.c \
+	  src/history/history_flag.c \
+	  src/history/utils.c \
+	  src/history/write_some_txt.c \
 
 OBJ = $(SRC:.c=.o)
 

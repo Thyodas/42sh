@@ -10,6 +10,8 @@
 #include "my_list.h"
 #include "definitions.h"
 
+void extend_array(char ***array, char *new_line);
+
 static void my_shell_prompt(char **envp)
 {
     sig_handler();

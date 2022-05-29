@@ -1,0 +1,210 @@
+make clean -C lib/my
+make[1]: Entering directory '/home/noahg/epi/42sh/lib/my'
+rm -f check_overflow.o convert_base.o my_compute_power_rec.o my_compute_square_root.o my_find_prime_sup.o my_getnbr_base.o my_getnbr.o my_is_prime.o my_isneg.o my_put_nbr.o my_putchar.o my_putnbr_base.o my_putstr.o my_revstr.o my_show_word_array.o my_showmem.o my_showstr.o my_sort_int_array.o my_str_to_word_array.o my_str_isalpha.o my_str_islower.o my_str_isnum.o my_str_isalphanum.o my_str_isprintable.o my_str_isupper.o my_strcapitalize.o my_strcat.o my_strdup.o my_strlen.o my_strlowcase.o my_strncat.o my_strncmp.o my_strcmp.o my_strncpy.o my_strstr.o my_strupcase.o my_swap.o my_strcpy.o power.o swap_endian_color.o get_color.o my_printf/my_printf.o my_printf/struct_utils.o my_printf/type_base.o my_printf/type_char.o my_printf/type_num.o my_printf/type_utils.o my_printf/printf_handling.o my_printf/type_float.o my_printf/str_utils.o my_printf/type_long_base.o my_printf/my_fprintf.o my_list/my_add_in_sorted_list.o my_list/my_apply_on_matching_nodes.o my_list/my_apply_on_nodes.o my_list/my_concat_list.o my_list/my_delete_nodes.o my_list/my_find_node.o my_list/my_list_size.o my_list/my_merge.o my_list/my_params_to_list.o my_list/my_rev_list.o my_list/my_sort_list.o my_strtok.o my_strtok_alpha.o my_strcmp_alpha.o my_putstr_stream.o
+make[1]: Leaving directory '/home/noahg/epi/42sh/lib/my'
+rm -f src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/vars_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/backticks_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/execution/readfd.o src/execution/exec_utils.o src/builtin/cd.o src/builtin/set.o src/builtin/history.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unset.o src/builtin/unsetenv.o src/builtin/env.o src/builtin/where.o src/builtin/which.o src/builtin/alias.o src/builtin/repeat.o src/builtin/fg.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/parser/handle_curly_brackets.o src/parser/parse_square_brackets.o src/parser/parse_curly_brackets.o src/parser/handle_args.o src/parser/path_utils.o src/parser/alias_handler.o src/parser/handle_match.o src/parser/backticks.o src/parser/my_strwa.o src/parser/var_substitute.o src/parser/handle_ascii_inhibitors.o src/utils/array.o src/utils/threed_array.o src/utils/parse_files.o src/utils/init_str.o src/utils/match.o src/utils/parse_files_recursively.o src/utils/is_a_dir.o src/utils/delete_char_from_string.o src/utils/insert_char_in_str.o src/history/history_flag.o src/history/utils.o src/history/write_some_txt.o
+make fclean -C lib/my
+make[1]: Entering directory '/home/noahg/epi/42sh/lib/my'
+rm -f check_overflow.o convert_base.o my_compute_power_rec.o my_compute_square_root.o my_find_prime_sup.o my_getnbr_base.o my_getnbr.o my_is_prime.o my_isneg.o my_put_nbr.o my_putchar.o my_putnbr_base.o my_putstr.o my_revstr.o my_show_word_array.o my_showmem.o my_showstr.o my_sort_int_array.o my_str_to_word_array.o my_str_isalpha.o my_str_islower.o my_str_isnum.o my_str_isalphanum.o my_str_isprintable.o my_str_isupper.o my_strcapitalize.o my_strcat.o my_strdup.o my_strlen.o my_strlowcase.o my_strncat.o my_strncmp.o my_strcmp.o my_strncpy.o my_strstr.o my_strupcase.o my_swap.o my_strcpy.o power.o swap_endian_color.o get_color.o my_printf/my_printf.o my_printf/struct_utils.o my_printf/type_base.o my_printf/type_char.o my_printf/type_num.o my_printf/type_utils.o my_printf/printf_handling.o my_printf/type_float.o my_printf/str_utils.o my_printf/type_long_base.o my_printf/my_fprintf.o my_list/my_add_in_sorted_list.o my_list/my_apply_on_matching_nodes.o my_list/my_apply_on_nodes.o my_list/my_concat_list.o my_list/my_delete_nodes.o my_list/my_find_node.o my_list/my_list_size.o my_list/my_merge.o my_list/my_params_to_list.o my_list/my_rev_list.o my_list/my_sort_list.o my_strtok.o my_strtok_alpha.o my_strcmp_alpha.o my_putstr_stream.o
+rm -f libmy.a
+rm -f ../libmy.a
+make[1]: Leaving directory '/home/noahg/epi/42sh/lib/my'
+rm -f 42sh
+\033[1;37m\033[1;42m                     Lib 📚️                      \033[0m
+👉️ Compiling \033[1mcheck_overflow.c\033[0m
+👉️ Compiling \033[1mconvert_base.c\033[0m
+👉️ Compiling \033[1mmy_compute_power_rec.c\033[0m
+👉️ Compiling \033[1mmy_compute_square_root.c\033[0m
+👉️ Compiling \033[1mmy_find_prime_sup.c\033[0m
+👉️ Compiling \033[1mmy_getnbr_base.c\033[0m
+👉️ Compiling \033[1mmy_getnbr.c\033[0m
+👉️ Compiling \033[1mmy_is_prime.c\033[0m
+👉️ Compiling \033[1mmy_isneg.c\033[0m
+👉️ Compiling \033[1mmy_put_nbr.c\033[0m
+👉️ Compiling \033[1mmy_putchar.c\033[0m
+👉️ Compiling \033[1mmy_putnbr_base.c\033[0m
+👉️ Compiling \033[1mmy_putstr.c\033[0m
+👉️ Compiling \033[1mmy_revstr.c\033[0m
+👉️ Compiling \033[1mmy_show_word_array.c\033[0m
+👉️ Compiling \033[1mmy_showmem.c\033[0m
+👉️ Compiling \033[1mmy_showstr.c\033[0m
+👉️ Compiling \033[1mmy_sort_int_array.c\033[0m
+👉️ Compiling \033[1mmy_str_to_word_array.c\033[0m
+👉️ Compiling \033[1mmy_str_isalpha.c\033[0m
+👉️ Compiling \033[1mmy_str_islower.c\033[0m
+👉️ Compiling \033[1mmy_str_isnum.c\033[0m
+👉️ Compiling \033[1mmy_str_isalphanum.c\033[0m
+👉️ Compiling \033[1mmy_str_isprintable.c\033[0m
+👉️ Compiling \033[1mmy_str_isupper.c\033[0m
+👉️ Compiling \033[1mmy_strcapitalize.c\033[0m
+👉️ Compiling \033[1mmy_strcat.c\033[0m
+👉️ Compiling \033[1mmy_strdup.c\033[0m
+👉️ Compiling \033[1mmy_strlen.c\033[0m
+👉️ Compiling \033[1mmy_strlowcase.c\033[0m
+👉️ Compiling \033[1mmy_strncat.c\033[0m
+👉️ Compiling \033[1mmy_strncmp.c\033[0m
+👉️ Compiling \033[1mmy_strcmp.c\033[0m
+👉️ Compiling \033[1mmy_strncpy.c\033[0m
+👉️ Compiling \033[1mmy_strstr.c\033[0m
+👉️ Compiling \033[1mmy_strupcase.c\033[0m
+👉️ Compiling \033[1mmy_swap.c\033[0m
+👉️ Compiling \033[1mmy_strcpy.c\033[0m
+👉️ Compiling \033[1mpower.c\033[0m
+👉️ Compiling \033[1mswap_endian_color.c\033[0m
+👉️ Compiling \033[1mget_color.c\033[0m
+👉️ Compiling \033[1mmy_printf/my_printf.c\033[0m
+👉️ Compiling \033[1mmy_printf/struct_utils.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_base.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_char.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_num.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_utils.c\033[0m
+👉️ Compiling \033[1mmy_printf/printf_handling.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_float.c\033[0m
+👉️ Compiling \033[1mmy_printf/str_utils.c\033[0m
+👉️ Compiling \033[1mmy_printf/type_long_base.c\033[0m
+👉️ Compiling \033[1mmy_printf/my_fprintf.c\033[0m
+👉️ Compiling \033[1mmy_list/my_add_in_sorted_list.c\033[0m
+👉️ Compiling \033[1mmy_list/my_apply_on_matching_nodes.c\033[0m
+👉️ Compiling \033[1mmy_list/my_apply_on_nodes.c\033[0m
+👉️ Compiling \033[1mmy_list/my_concat_list.c\033[0m
+👉️ Compiling \033[1mmy_list/my_delete_nodes.c\033[0m
+👉️ Compiling \033[1mmy_list/my_find_node.c\033[0m
+👉️ Compiling \033[1mmy_list/my_list_size.c\033[0m
+👉️ Compiling \033[1mmy_list/my_merge.c\033[0m
+👉️ Compiling \033[1mmy_list/my_params_to_list.c\033[0m
+👉️ Compiling \033[1mmy_list/my_rev_list.c\033[0m
+👉️ Compiling \033[1mmy_list/my_sort_list.c\033[0m
+👉️ Compiling \033[1mmy_strtok.c\033[0m
+👉️ Compiling \033[1mmy_strtok_alpha.c\033[0m
+👉️ Compiling \033[1mmy_strcmp_alpha.c\033[0m
+👉️ Compiling \033[1mmy_putstr_stream.c\033[0m
+\033[1;37m\033[1;46m                   MINISHELL1                    \033[0m
+👉️ Compiling \033[1msrc/main.c\033[0m
+👉️ Compiling \033[1msrc/memory/mem_shell.c\033[0m
+👉️ Compiling \033[1msrc/execution/command.c\033[0m
+👉️ Compiling \033[1msrc/execution/env_utils.c\033[0m
+👉️ Compiling \033[1msrc/execution/vars_utils.c\033[0m
+👉️ Compiling \033[1msrc/execution/signal.c\033[0m
+👉️ Compiling \033[1msrc/execution/builtin_utils.c\033[0m
+👉️ Compiling \033[1msrc/execution/backticks_utils.c\033[0m
+👉️ Compiling \033[1msrc/execution/command_error.c\033[0m
+👉️ Compiling \033[1msrc/execution/prompt.c\033[0m
+👉️ Compiling \033[1msrc/execution/io/retrieve_io.c\033[0m
+👉️ Compiling \033[1msrc/execution/io/heredoc.c\033[0m
+👉️ Compiling \033[1msrc/execution/io/pipe.c\033[0m
+👉️ Compiling \033[1msrc/execution/readfd.c\033[0m
+👉️ Compiling \033[1msrc/execution/exec_utils.c\033[0m
+👉️ Compiling \033[1msrc/builtin/cd.c\033[0m
+👉️ Compiling \033[1msrc/builtin/set.c\033[0m
+👉️ Compiling \033[1msrc/builtin/history.c\033[0m
+👉️ Compiling \033[1msrc/builtin/setenv.c\033[0m
+👉️ Compiling \033[1msrc/builtin/exit.c\033[0m
+👉️ Compiling \033[1msrc/builtin/unset.c\033[0m
+👉️ Compiling \033[1msrc/builtin/unsetenv.c\033[0m
+👉️ Compiling \033[1msrc/builtin/env.c\033[0m
+👉️ Compiling \033[1msrc/builtin/where.c\033[0m
+👉️ Compiling \033[1msrc/builtin/which.c\033[0m
+👉️ Compiling \033[1msrc/builtin/alias.c\033[0m
+👉️ Compiling \033[1msrc/builtin/repeat.c\033[0m
+👉️ Compiling \033[1msrc/builtin/fg.c\033[0m
+👉️ Compiling \033[1msrc/parser/parse_line.c\033[0m
+👉️ Compiling \033[1msrc/parser/parse_command.c\033[0m
+👉️ Compiling \033[1msrc/parser/token_handlers.c\033[0m
+👉️ Compiling \033[1msrc/parser/char_test.c\033[0m
+👉️ Compiling \033[1msrc/parser/separator_handlers.c\033[0m
+👉️ Compiling \033[1msrc/parser/parser_utils.c\033[0m
+👉️ Compiling \033[1msrc/parser/handle_curly_brackets.c\033[0m
+👉️ Compiling \033[1msrc/parser/parse_square_brackets.c\033[0m
+👉️ Compiling \033[1msrc/parser/parse_curly_brackets.c\033[0m
+👉️ Compiling \033[1msrc/parser/handle_args.c\033[0m
+👉️ Compiling \033[1msrc/parser/path_utils.c\033[0m
+👉️ Compiling \033[1msrc/parser/alias_handler.c\033[0m
+👉️ Compiling \033[1msrc/parser/handle_match.c\033[0m
+👉️ Compiling \033[1msrc/parser/backticks.c\033[0m
+👉️ Compiling \033[1msrc/parser/my_strwa.c\033[0m
+👉️ Compiling \033[1msrc/parser/var_substitute.c\033[0m
+👉️ Compiling \033[1msrc/parser/handle_ascii_inhibitors.c\033[0m
+👉️ Compiling \033[1msrc/utils/array.c\033[0m
+👉️ Compiling \033[1msrc/utils/threed_array.c\033[0m
+👉️ Compiling \033[1msrc/utils/parse_files.c\033[0m
+👉️ Compiling \033[1msrc/utils/init_str.c\033[0m
+👉️ Compiling \033[1msrc/utils/match.c\033[0m
+👉️ Compiling \033[1msrc/utils/parse_files_recursively.c\033[0m
+👉️ Compiling \033[1msrc/utils/is_a_dir.c\033[0m
+👉️ Compiling \033[1msrc/utils/delete_char_from_string.c\033[0m
+👉️ Compiling \033[1msrc/utils/insert_char_in_str.c\033[0m
+👉️ Compiling \033[1msrc/history/history_flag.c\033[0m
+👉️ Compiling \033[1msrc/history/utils.c\033[0m
+👉️ Compiling \033[1msrc/history/write_some_txt.c\033[0m
+cp ./42sh ./tests/42sh
+cd ./tests && ./tester.sh
+Test 901 (Nothing) : OK
+Test 902 (Exec two command) : OK
+Test 903 (Testing with /usr/bin PATH) : OK
+Test 904 (Testing with /bin PATH) : OK
+Test 905 (run commands) : OK
+Test 906 (setenv and unsetenv) : OK
+Test 907 (builtin cd) : OK
+Test 908 (many tab and space) : OK
+Test 909 (Launch DivZero program with core dump) : OK
+Test 910 (Launch SegFault program without core dump) : OK
+Test 911 (Testing simple pipe) : OK
+Test 912 (A pipe with a builtin ?) : OK
+Test 913 (Special pipe and redirection) : OK
+Test 914 (Ambiguous output redirect) : OK
+Test 915 (Multiple commands seperated by ;) : OK
+Test 916 (Quotes) : OK
+Test 917 (Redirection >) : OK
+Test 918 (Redirection <) : OK
+Test 919 (Redirection >>) : OK
+Test 920 (Redirection <<) : OK
+Test 921 (Extreme redirections and multiple commands) : OK
+Test 922 (Many pipes) : OK
+Test 923 (Pipe to builtin) : OK
+Test 924 (Many many many many pipes) : OK
+Test 925 (Minishell2 subject example) : OK
+Test 926 (Minishell2 subject example harder) : OK
+Test 927 (Minishell2 bootstrap example) : OK
+Test 928 (Redirect and pipe without spaces) : OK
+Test 929 (Basic AND separator without error) : OK
+Test 930 (Basic AND separator with error) : OK
+Test 931 (Basic OR separator without error) : OK
+Test 932 (Basic OR separator with error) : OK
+Test 933 (Complex separators) : OK
+Test 934 (PATH 3) : OK
+Test 935 (binary not compatible) : OK
+Test 936 (Exec a directory) : OK
+Test 937 (PATH 5) : OK
+Test 938 (Where builtin - valid tests) : OK
+Test 939 (Where builtin - invalid tests) : OK
+Test 940 (Where builtin - special) : OK
+Test 941 (Which builtin - valid tests) : OK
+Test 942 (Which builtin - invalid tests) : OK
+Test 943 (Which builtin - special) : OK
+Test 944 (Variables first) : OK
+Test 945 (Variables with env) : OK
+Test 946 (Variables with spaces) : OK
+Test 947 (Variable: undefined variable) : OK
+Test 948 (Variables show var) : OK
+Test 949 (Variable: exit status) : OK
+Test 950 (Variable: ~) : OK
+Test 951 (Variable: term) : OK
+Test 952 (Variable: _) : OK
+Test 953 (Repeat builtin) : OK
+Test 954 (Backticks 1) : OK
+Test 955 (Backticks 2) : OK
+Test 956 (Backticks 3) : OK
+Test 957 (Backticks 4) : OK
+Test 958 (Backticks with error) : OK
+Test 959 (Handle curly brackets) : OK
+Test 960 (Handle square brackets) : OK
+Test 961 (Handle question mark) : OK
+Test 962 (Handle wildcard) : OK
+Test 963 (Handle multiple globbings) : OK
+Test 964 (Handle multiple globbings with subpaths) : OK
+Test 965 (Handle globbings in root directory) : OK
+Test 966 (Handle no match) : OK
+Test 967 (Handle no match with curly) : OK
+Test 968 (Handle missing closing curly) : OK
+Test 969 (Handle missing opening curly) : OK
+Test 970 (Inhibitor with basic char) : OK

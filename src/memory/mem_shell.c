@@ -69,6 +69,9 @@ sh_data_t *init_shell_data(char **envp)
     data->last_sig_status = 0;
     data->current_command = NULL;
     data->suspended_command = NULL;
+    data->history = malloc(sizeof(char *));
+    data->history[0] = NULL;
+    data->history_index = 0;
     get_shell_data(data);
     init_default_vars(data);
     return (data);
