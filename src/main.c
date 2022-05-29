@@ -20,12 +20,12 @@ static void my_shell_prompt(char **envp)
         exit(84);
     data->is_prompt_mode = true;
     size_t len = 0;
-    ssize_t lineSize = 0;
+    ssize_t line_size = 0;
     while (1) {
         char *line = NULL;
         print_prompt(data);
-        lineSize = getline(&line, &len, stdin);
-        if (lineSize == EOF)
+        line_size = getline(&line, &len, stdin);
+        if (line_size == EOF)
             default_shell_exit();
         if (line[0] == '\n') {
             free(line);
@@ -43,11 +43,11 @@ static int my_shell_pipe(char **envp)
     if (data == NULL)
         exit(84);
     size_t len = 0;
-    ssize_t lineSize = 0;
+    ssize_t line_size = 0;
     while (1) {
         char *line = NULL;
-        lineSize = getline(&line, &len, stdin);
-        if (lineSize == EOF)
+        line_size = getline(&line, &len, stdin);
+        if (line_size == EOF)
             break;
         if (line[0] == '\n') {
             free(line);

@@ -33,7 +33,7 @@ static const special_token_t TOKEN_LIST[] = {
 };
 
 int get_str_by_condition(char ***array, const char *str,
-int (*condition)(char c))
+                        int (*condition)(char c))
 {
     int size = 0;
     for (; condition(str[size]); ++size);
@@ -70,12 +70,10 @@ int handle_char(char ***array, const char *str, int pos)
             return (TOKEN_LIST[i].size);
         }
     }
-    if (is_quote(str[pos]) && (pos == 0 || str[pos - 1] != '\\')) {
+    if (is_quote(str[pos]) && (pos == 0 || str[pos - 1] != '\\'))
         return (quote_handling(array, str + pos, str[pos]));
-    }
-    if (is_char_valid(str[pos])) {
+    if (is_char_valid(str[pos]))
         return (get_str_by_condition(array, str + pos, &is_char_valid));
-    }
     return 1;
 }
 

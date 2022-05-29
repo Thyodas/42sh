@@ -12,7 +12,7 @@
 #include <unistd.h>
 
 void parse_square(char *str, linked_list_t **list_globs);
-int	match(char *s1, char *s2, int pos1, int pos2);
+int match(char *s1, char *s2, int pos1, int pos2);
 char *init_str(int size);
 void extend_array(char ***array, char *new_line);
 char **get_all_sub_files(char *path, int max_depth);

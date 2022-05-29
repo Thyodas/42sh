@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2022
-** minishell1
+** 42sh
 ** File description:
 ** exit
 */

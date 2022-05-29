@@ -11,7 +11,7 @@
 
 static void should_i_replace(sh_data_t *data, char **alias, unsigned int *i)
 {
-    if(my_strcmp(INPUT[*i], alias[0]) != 0)
+    if (my_strcmp(INPUT[*i], alias[0]) != 0)
         return;
     unsigned int i_input = 0;
     unsigned int i_alias = 1;

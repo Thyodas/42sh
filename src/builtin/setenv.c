@@ -56,9 +56,9 @@ int builtin_setenv(sh_data_t *data)
     int check = check_setenv(data);
     if (check)
         return (check);
-    if (data->current_command->argc == 2) {
+    if (data->current_command->argc == 2)
         set_env_value(data, data->current_command->argv[1], "");
-    } else
+    else
         set_env_value(data, data->current_command->argv[1],
             data->current_command->argv[2]);
     return (0);

@@ -9,7 +9,7 @@
 #include <time.h>
 #include <my.h>
 
-void writeFile(const char *filename, char *txt)
+void writeFile(const char *filename, char *txt) //TODO writeFile
 {
     int len = my_strlen(txt);
     char *buffer = malloc(sizeof(char) * len);
@@ -31,7 +31,7 @@ void writeFile(const char *filename, char *txt)
     }
 }
 
-char *command_time()
+char *command_time() //TODO void
 {
     time_t rawtime = time(NULL);
     struct tm *time_info = localtime(&rawtime);

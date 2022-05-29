@@ -64,15 +64,15 @@ SRC = src/main.c \
 	  src/history/utils.c \
 	  src/history/write_some_txt.c \
 
-OBJ = $(SRC:.c=.o)
+OBJ := $(SRC:.c=.o)
 
-NAME = 42sh
+NAME := 42sh
 
-INCLUDE = include
+INCLUDE := include
 
-LIB = lib/my
+LIB := lib/my
 
-CFLAGS = -I$(INCLUDE) -Wall -Wextra -g
+CFLAGS := -I$(INCLUDE) -Wall -Wextra -g
 
 %.o: %.c
 	@echo "👉️ Compiling \033[1m$<\033[0m"
@@ -85,7 +85,7 @@ make_lib:
 		make -C $(LIB)
 
 title:
-		@echo "\033[1;37m\033[1;46m                   MINISHELL1\
+		@echo "\033[1;37m\033[1;46m                   42SH\
                     \033[0m"
 
 $(NAME): make_lib title $(OBJ)

@@ -9,13 +9,13 @@
 #include "shell.h"
 
 int history_flag(sh_data_t *data);
-int disp_history_n(sh_data_t *data, int n);;
+int disp_history_n(sh_data_t *data, int n);
 
 int my_nbrlen(int nb)
 {
     int res = 0;
 
-    for(; nb > 0; res++)
+    for (; nb > 0; res++)
         nb = nb / 10;
     return res;
 }

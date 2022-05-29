@@ -47,7 +47,7 @@ char **dup_array(char **array)
     while (array[i] != NULL)
         i++;
     res = malloc(sizeof(char *) * (i + 1));
-    for(int j = 0; j < i; j++)
+    for (int j = 0; j < i; j++)
         res[j] = strdup(array[j]);
     res[i] = NULL;
     return (res);

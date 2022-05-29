@@ -14,9 +14,8 @@ static void is_printable(char *line, int tab, int j)
 {
     if (tab == 1 && line[j] == '\t') {
         j++;
-        for (int i = j; line[i] != '\0'; i++) {
+        for (int i = j; line[i] != '\0'; i++)
             my_putchar(line[i]);
-        }
         my_putchar('\n');
     }
 }

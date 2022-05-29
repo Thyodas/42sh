@@ -48,7 +48,7 @@ char **my_stwa(char const *str, char div)
 {
     int j = 0;
     int k = 0;
-    for (;str[0] == ' '; str++);
+    for (; str[0] == ' '; str++);
     char **tab = malloc_array(str, div);
 
     for (unsigned int i = 0; str[i]; ++i) {

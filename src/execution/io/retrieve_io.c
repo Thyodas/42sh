@@ -33,7 +33,8 @@ int (*const IO_RETRIEVE[])(sh_data_t *data) = {
 
 int retrieve_io_output(sh_data_t *data)
 {
-    data->current_command->write_fd = open(data->current_command->output_option,
+    data->current_command->write_fd =
+        open(data->current_command->output_option,
         O_WRONLY | O_CREAT | O_TRUNC,
         S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
     if (data->current_command->write_fd == -1) {
@@ -45,7 +46,8 @@ int retrieve_io_output(sh_data_t *data)
 
 int retrieve_io_output_append(sh_data_t *data)
 {
-    data->current_command->write_fd = open(data->current_command->output_option,
+    data->current_command->write_fd =
+        open(data->current_command->output_option,
         O_WRONLY | O_CREAT | O_APPEND,
         S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
     if (data->current_command->write_fd == -1) {

@@ -17,7 +17,8 @@ int is_char_special(char c)
 
 int is_char_valid(char c)
 {
-    return (!is_char_special(c) && !is_char_blank(c) && c != '\0' && c != '\n');
+    return (!is_char_special(c) && !is_char_blank(c) &&
+            c != '\0' && c != '\n');
 }
 
 int is_quote(int c)
