@@ -132,8 +132,10 @@ void parse_current_line(sh_data_t *data, char *line)
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
     data->line = line_to_array(line);
-    if (data->line == NULL || data->line[0] == NULL)
+    if (data->line == NULL || data->line[0] == NULL) {
+        data->last_exit_status = 1;
         return;
+    }
     alias_handler(data);
     handle_backtick(data);
     if (var_substitute(data)) {

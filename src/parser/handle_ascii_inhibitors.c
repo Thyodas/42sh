@@ -33,7 +33,7 @@ static const char ascii_char[] = {
     '\r'
 };
 
-static char* delete_and_insert(char *str, int pos, int i)
+static char *delete_and_insert(char *str, int pos, int i)
 {
     str = delete_char_from_string(str, pos);
     str = delete_char_from_string(str, pos);

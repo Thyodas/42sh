@@ -63,7 +63,7 @@ int disp_history_n(sh_data_t *data, int n)
     int space = 1;
     int history_len = 0;
 
-    for (;data->history[len] != NULL; len++);
+    for (; data->history[len] != NULL; len++);
     history_len = my_nbrlen(len);
     int nbr = data->history_index - len;
     for (int i = len - n; data->history[i] != NULL; i++, nbr++) {

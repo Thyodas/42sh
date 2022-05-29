@@ -7,6 +7,7 @@
 
 SRC = src/main.c \
 	  src/memory/mem_shell.c \
+	  src/memory/malloc_shell.c \
 	  src/execution/command.c \
 	  src/execution/env_utils.c \
 	  src/execution/vars_utils.c \

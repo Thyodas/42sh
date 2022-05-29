@@ -20,7 +20,6 @@ void writeFile(const char *filename, char *txt);
 
 int(*ptr[])(sh_data_t *) = {
     history_delete, disp_hist, rev_disp_history,
-    //write_in_history_file,
 };
 
 int history_flag(sh_data_t *data)

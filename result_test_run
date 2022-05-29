@@ -144,6 +144,79 @@ Test 903 (Testing with /usr/bin PATH) : OK
 Test 904 (Testing with /bin PATH) : OK
 Test 905 (run commands) : OK
 Test 906 (setenv and unsetenv) : OK
+Test 906 (setenv and unsetenv) : OK
+Test 907 (builtin cd) : OK
+Test 908 (many tab and space) : OK
+Test 909 (Launch DivZero program with core dump) : OK
+Test 910 (Launch SegFault program without core dump) : OK
+Test 911 (Testing simple pipe) : OK
+Test 912 (A pipe with a builtin ?) : OK
+Test 913 (Special pipe and redirection) : OK
+Test 914 (Ambiguous output redirect) : OK
+Test 915 (Multiple commands seperated by ;) : OK
+Test 916 (Quotes) : OK
+Test 917 (Redirection >) : OK
+Test 918 (Redirection <) : OK
+Test 919 (Redirection >>) : OK
+Test 920 (Redirection <<) : OK
+Test 921 (Extreme redirections and multiple commands) : OK
+Test 922 (Many pipes) : OK
+Test 923 (Pipe to builtin) : OK
+Test 924 (Many many many many pipes) : OK
+Test 925 (Minishell2 subject example) : OK
+Test 926 (Minishell2 subject example harder) : OK
+Test 927 (Minishell2 bootstrap example) : OK
+Test 928 (Redirect and pipe without spaces) : OK
+Test 929 (Basic AND separator without error) : OK
+Test 930 (Basic AND separator with error) : OK
+Test 931 (Basic OR separator without error) : OK
+Test 932 (Basic OR separator with error) : OK
+Test 933 (Complex separators) : OK
+Test 934 (PATH 3) : OK
+Test 935 (binary not compatible) : OK
+Test 936 (Exec a directory) : OK
+Test 937 (PATH 5) : OK
+Test 938 (Where builtin - valid tests) : OK
+Test 939 (Where builtin - invalid tests) : OK
+Test 940 (Where builtin - special) : OK
+Test 941 (Which builtin - valid tests) : OK
+Test 942 (Which builtin - invalid tests) : OK
+Test 943 (Which builtin - special) : OK
+Test 944 (Variables first) : OK
+Test 945 (Variables with env) : OK
+Test 946 (Variables with spaces) : OK
+Test 947 (Variable: undefined variable) : OK
+Test 948 (Variables show var) : OK
+Test 949 (Variable: exit status) : OK
+Test 950 (Variable: ~) : OK
+Test 951 (Variable: term) : OK
+Test 952 (Variable: _) : OK
+Test 953 (Repeat builtin) : OK
+Test 954 (Backticks 1) : OK
+Test 955 (Backticks 2) : OK
+Test 956 (Backticks 3) : OK
+Test 957 (Backticks 4) : OK
+Test 958 (Backticks with error) : OK
+Test 959 (Handle curly brackets) : OK
+Test 960 (Handle square brackets) : OK
+Test 961 (Handle question mark) : OK
+Test 962 (Handle wildcard) : OK
+Test 963 (Handle multiple globbings) : OK
+Test 964 (Handle multiple globbings with subpaths) : OK
+Test 965 (Handle globbings in root directory) : OK
+Test 966 (Handle no match) : OK
+Test 967 (Handle no match with curly) : OK
+Test 968 (Handle missing closing curly) : OK
+Test 969 (Handle missing opening curly) : OK
+Test 970 (Inhibitor with basic char) : OK
+Test 971 (Inhibitor with multiple basic char) : OK
+Test 972 (Inhibitor globbings) : OK
+Test 973 (Inhibitor globbings with quotes) : OK
+Test 974 (Inhibitor with basic char without quotes) : OK
+Test 975 (Inhibitor with multiple basic char without quotes) : OK
+Test 976 (Complex inhibitors without quotes) : OK
+Test 977 (Complex inhibitors with quotes) : OK
+Test 978 (Inhibitors with wrong char with quotes) : OK
 Test 907 (builtin cd) : OK
 Test 908 (many tab and space) : OK
 Test 909 (Launch DivZero program with core dump) : OK

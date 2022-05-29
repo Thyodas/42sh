@@ -5,8 +5,8 @@
 ** globbings.h
 */
 
-#ifndef GLOBBINGS_H
-    #define GLOBBINGS_H
+#ifndef GLOBBINGS_H_
+    #define GLOBBINGS_H_
 
     typedef struct globbings {
         int pos_square_open;
@@ -23,4 +23,4 @@
         char **str_replacable;
     } globbings_t;
 
-#endif
+#endif /* !GLOBBINGS_H_ */
