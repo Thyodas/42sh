@@ -41,6 +41,7 @@ void init_shell_data_2(sh_data_t *data)
     data->history = malloc(sizeof(char *));
     data->history[0] = NULL;
     data->history_index = 0;
+    get_shell_data(data);
 }
 
 sh_data_t *init_shell_data(char **envp)
