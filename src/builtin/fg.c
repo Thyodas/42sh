@@ -14,7 +14,7 @@
 void binary_error(sh_data_t *data, int status);
 command_t *get_command_fg(sh_data_t *data);
 
-static int send_signals(sh_data_t *data, command_t *stored_command)
+static int send_signals(command_t *stored_command)
 {
     int status = 0;
     command_t *pipe = stored_command;
@@ -40,7 +40,7 @@ int fg(sh_data_t *data)
         return 1;
     }
     command_t *stored_command = get_command_fg(data);
-    int status = send_signals(data, stored_command);
+    int status = send_signals(stored_command);
     if (WIFSTOPPED(status))
         my_add_node(stored_command, &data->suspended_command);
     else
