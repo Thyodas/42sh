@@ -39,7 +39,7 @@ int rev_disp_history(sh_data_t *data)
     int space = 0;
     int history_len = 0;
 
-    for (;data->history[len] != NULL; len++);
+    for (; data->history[len] != NULL; len++);
     history_len = my_nbrlen(len) + 1;
     int nbr = data->history_index;
     for (int i = len - 1; i >= 0; i--, nbr--) {

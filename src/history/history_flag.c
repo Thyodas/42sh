@@ -18,7 +18,7 @@ int write_in_history_file(sh_data_t *data);
 int disp_hist(sh_data_t *data);
 void write_file(const char *filename, char *txt);
 
-int(*ptr[])(sh_data_t *) = {
+int (*ptr[])(sh_data_t *) = {
     history_delete, disp_hist, rev_disp_history,
 };
 
