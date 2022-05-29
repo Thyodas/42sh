@@ -665,3 +665,83 @@ CLEAN=""
 TESTS=
   echo 'echo "echo zizi oui,non}"'
 [969-END]
+
+[970]
+NAME="Inhibitor with basic char"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_basic_char'
+[970-END]
+
+[971]
+NAME="Inhibitor with multiple basic char"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_multiple_basic_char'
+[971-END]
+
+[972]
+NAME="Inhibitor globbings"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_globbings'
+[972-END]
+
+[973]
+NAME="Inhibitor globbings with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_globbings_with_quotes'
+[973-END]
+
+[974]
+NAME="Inhibitor with basic char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_basic_char_without_quotes'
+[974-END]
+
+[975]
+NAME="Inhibitor with multiple basic char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_multiple_basic_char_without_quotes'
+[975-END]
+
+[976]
+NAME="Complex inhibitors without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Complex_inhibitors_without_quotes'
+[976-END]
+
+[977]
+NAME="Complex inhibitors with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Complex_inhibitors_with_quotes'
+[977-END]
+
+[978]
+NAME="Inhibitors with wrong char with quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_wrong_char_with_quotes'
+[978-END]
+
+[979]
+NAME="Inhibitors with wrong char without quotes"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'cat Inhibitors/Inhibitor_with_wrong_char_without_quotes'
+[979-END]
