@@ -745,3 +745,34 @@ CLEAN=""
 TESTS=
   echo 'cat Inhibitors/Inhibitor_with_wrong_char_without_quotes'
 [979-END]
+
+[980]
+NAME="Alias simple test"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias hey ls'
+  echo 'hey'
+[980-END]
+
+[981]
+NAME="Alias simple test show"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias hey ls'
+  echo 'alias hihihi ls -l'
+  echo 'alias'
+  echo 'hey;hihihi'
+[981-END]
+
+[982]
+NAME="Alias errors"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias'
+  echo 'alias hihi'
+  echo 'alias'
+  echo 'hihi'
+[982-END]

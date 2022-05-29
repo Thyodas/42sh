@@ -64,7 +64,7 @@ INCLUDE = include
 
 LIB = lib/my
 
-CFLAGS = -I$(INCLUDE) -Wall -Wextra -Wpedantic -g
+CFLAGS = -I$(INCLUDE) -Wall -Wextra -g
 
 %.o: %.c
 	@echo "👉️ Compiling \033[1m$<\033[0m"

@@ -48,18 +48,18 @@ static int add_new_alias(sh_data_t *data)
 
 static void show_alias(sh_data_t *data, unsigned int u)
 {
-    printf("%s\t", ALIAS[u][0]);
+    my_printf("%s\t", ALIAS[u][0]);
     if (array_len(ALIAS[u]) > 2)
-        printf("(");
+        my_printf("(");
     for (unsigned int v = 1; ALIAS[u][v]; ++v) {
-        printf("%s", ALIAS[u][v]);
+        my_printf("%s", ALIAS[u][v]);
         if (ALIAS[u][v + 1])
-            printf(" ");
+            my_printf(" ");
     }
     if (array_len(ALIAS[u]) > 2)
-        printf(")\n");
+        my_printf(")\n");
     else
-        printf("\n");
+        my_printf("\n");
 }
 
 static void replace_alias(sh_data_t *data, unsigned int size, unsigned int i)
@@ -75,28 +75,15 @@ static void replace_alias(sh_data_t *data, unsigned int size, unsigned int i)
     ALIAS[i] = new_alias;
 }
 
-unsigned int my_3d_array_len(char ***array)
-{
-    unsigned int size = 0;
-    for (; array[size] != NULL; ++size);
-    return size;
-}
-
-int compare(const void *a, const void *b)
-{
-    return my_strcmp(**(char ***)a, **(char ***)b);
-}
-
 int builtin_alias(sh_data_t *data)
 {
     unsigned int size = 0;
     if (ARGC == 1) {
-        qsort(ALIAS, my_3d_array_len(ALIAS), sizeof(char **), compare);
         for (unsigned int u = 0; ALIAS[u]; ++u)
             show_alias(data, u);
         return 0;
-    } else if (ARGC == 2) return 0;
-
+    } else if (ARGC == 2)
+        return 0;
     for (unsigned int i = 0; ALIAS[i]; ++i) {
         if (my_strcmp(ALIAS[i][0], ARGV[1]) == 0) {
             replace_alias(data, size, i);
