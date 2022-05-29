@@ -98,7 +98,9 @@
         {"which", &builtin_which},
         {"alias", &builtin_alias},
         {"repeat", &builtin_repeat},
-        {"fg", &job_control}
+        {"fg", &fg},
+        {"jobs", &jobs},
+        {"kill", &kill_builtin}
     };
 
     #define BUILTIN_NB (sizeof(BUILTIN_JUMP_TABLE) / sizeof(builtin_t))

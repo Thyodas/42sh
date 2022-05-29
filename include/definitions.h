@@ -60,7 +60,13 @@
     int builtin_alias(sh_data_t *data);
 
     //builtin/fg.c
-    int job_control(sh_data_t *data);
+    int fg(sh_data_t *data);
+
+    //builtin/jobs.c
+    int jobs(sh_data_t *data);
+
+    //builtin/kill.c
+    int kill_builtin(sh_data_t *data);
 
     /*
     Execution
