@@ -5,9 +5,13 @@
 ** parse_command
 */
 
+#include "my.h"
 #include "shell.h"
 #include "my_list.h"
-#include "my.h"
+#include "time.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 char **line_to_array(char const *str);
 void extend_array(char ***array, char *new_line);
@@ -31,8 +35,12 @@ char *init_str(int size);
 int handle_args(sh_data_t *data, char *str, int *i);
 int var_substitute(sh_data_t *data);
 int alias_handler(sh_data_t *data);
-int handle_backtick(sh_data_t *data);
+void handle_backtick(sh_data_t *data);
 char *handle_ascii_inhib(char *str);
+char *history_maker(char **line, int length, int len, char *clock);
+char *history_make(char **line, int length, int len);
+char *command_time();
+void init_command_execution(sh_data_t *data);
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -78,16 +86,6 @@ static int parse_next_command(sh_data_t *data, char **line, bool *error)
     return (i + 1);
 }
 
-static void init_command_execution(sh_data_t *data)
-{
-    reset_data(data);
-    if (retrieve_io(data)) {
-        data->last_exit_status = 1;
-        return;
-    }
-    execute_command(data);
-}
-
 static void parse_command_and_exec(sh_data_t *data, int len)
 {
     bool error = false;
@@ -106,27 +104,43 @@ static void parse_command_and_exec(sh_data_t *data, int len)
     }
 }
 
+static void second_parser(sh_data_t *data)
+{
+    int len = 0;
+    int length = 0;
+    char status[10];
+    char *time = command_time();
+    char *last_command = my_strdup("");
+    int backtick_status = data->last_exit_status;
+    for (; data->line[len] != NULL; len++)
+        for (int i = 0; data->line[len][i] != '\0'; i++, length++);
+    length += len + 1;
+    length += my_strlen(time);
+    data->history_index++;
+    last_command = history_maker(data->line, length, len, time);
+    extend_array(&data->history, last_command);
+    parse_command_and_exec(data, len);
+    data->last_exit_status = data->last_exit_status == 0 ? backtick_status :
+        data->last_exit_status;
+    sprintf(status, "%d", data->last_exit_status);
+    set_var_value(data, "status", status);
+}
+
 void parse_current_line(sh_data_t *data, char *line)
 {
-    char status[10];
-    int backticks_exit_status = 0;
-
+    data->last_exit_status = 0;
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];
     data->line = line_to_array(line);
-    if (data->line == NULL || data->line[0] == NULL)
+    if (data->line == NULL || data->line[0] == NULL) {
+        data->last_exit_status = 1;
         return;
+    }
     alias_handler(data);
+    handle_backtick(data);
     if (var_substitute(data)) {
         data->last_exit_status = 1;
         return;
     }
-    backticks_exit_status = handle_backtick(data);
-    int len = 0;
-    for (; data->line[len] != NULL; len++);
-    parse_command_and_exec(data, len);
-    if (data->last_exit_status == 0)
-        data->last_exit_status = backticks_exit_status;
-    sprintf(status, "%d", data->last_exit_status);
-    set_var_value(data, "status", status);
+    second_parser(data);
 }

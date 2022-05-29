@@ -36,19 +36,11 @@ static char **malloc_envp(sh_data_t *data)
     return (new_env);
 }
 
-command_t *malloc_command(void)
+void init_shell_data_2(sh_data_t *data)
 {
-    command_t *command = malloc(sizeof(command_t));
-    command->argv = malloc(sizeof(char *));
-    command->argv[0] = NULL;
-    command->argc = 0;
-    command->read_fd = 0;
-    command->write_fd = 1;
-    command->input_type = -1;
-    command->output_type = -1;
-    command->pipe_next = NULL;
-    command->pipe_prev = NULL;
-    return command;
+    data->history = malloc(sizeof(char *));
+    data->history[0] = NULL;
+    data->history_index = 0;
 }
 
 sh_data_t *init_shell_data(char **envp)
@@ -69,7 +61,7 @@ sh_data_t *init_shell_data(char **envp)
     data->last_sig_status = 0;
     data->current_command = NULL;
     data->suspended_command = NULL;
-    get_shell_data(data);
+    init_shell_data_2(data);
     init_default_vars(data);
     return (data);
 }

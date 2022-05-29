@@ -7,6 +7,19 @@
 
 #include "my.h"
 #include "shell.h"
+int retrieve_io(sh_data_t *data);
+void reset_data(sh_data_t *data);
+void execute_command(sh_data_t *data);
+
+void init_command_execution(sh_data_t *data)
+{
+    reset_data(data);
+    if (retrieve_io(data)) {
+        data->last_exit_status = 1;
+        return;
+    }
+    execute_command(data);
+}
 
 void handle_pid(sh_data_t *data, int status)
 {

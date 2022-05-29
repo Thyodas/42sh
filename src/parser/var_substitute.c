@@ -54,13 +54,14 @@ int substitution(sh_data_t *data, int *i)
 {
     char *variable;
     char *new_cmd;
-    int len;
     handle_home(data, i);
     if ((variable = my_strstr(data->line[*i], "$")) != NULL) {
+        if (variable[1] == '\t' || variable[1] == ' ' || variable[1] == '\0')
+            return (0);
         char *value = get_value(data, variable);
         if (!value)
             return (1);
-        len = (my_strlen(data->line[*i]) - my_strlen(variable) +
+        int len = (my_strlen(data->line[*i]) - my_strlen(variable) +
             my_strlen(value));
         new_cmd = malloc(sizeof(char) * (len + 1));
         for (int j = 0; j < len + 1; new_cmd[j] = 0, j++);

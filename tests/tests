@@ -776,3 +776,55 @@ TESTS=
   echo 'alias'
   echo 'hihi'
 [982-END]
+
+[983]
+NAME="Alias show sorted"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias hihi ls'
+  echo 'alias haha ls'
+  echo 'alias'
+  echo 'hihi;haha'
+[983-END]
+
+[984]
+NAME="Backticks LE RETOUR"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo ls`ls`ls'
+[984-END]
+
+[985]
+NAME="Backticks and alias"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'alias a ls'
+  echo 'echo `a`'
+[985-END]
+
+[986]
+NAME="Unmatch cote"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo "echo '"
+[986-END]
+
+[987]
+NAME="Unmatch double cote"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo "'
+[987-END]
+
+[989]
+NAME="Unmatch backticks"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'echo `'
+[989-END]

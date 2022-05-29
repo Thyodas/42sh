@@ -68,6 +68,9 @@
     //builtin/kill.c
     int kill_builtin(sh_data_t *data);
 
+    // builtin/history.c
+    int builtin_history(sh_data_t *data);
+
     /*
     Execution
     */
