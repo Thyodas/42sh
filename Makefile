@@ -18,6 +18,7 @@ SRC = src/main.c \
 	  src/execution/io/retrieve_io.c \
 	  src/execution/io/heredoc.c \
 	  src/execution/io/pipe.c \
+	  src/execution/exec_utils.c \
 	  src/builtin/cd.c \
 	  src/builtin/set.c \
 	  src/builtin/setenv.c \
@@ -28,6 +29,7 @@ SRC = src/main.c \
 	  src/builtin/where.c \
 	  src/builtin/which.c \
 	  src/builtin/repeat.c \
+	  src/builtin/fg.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \

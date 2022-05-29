@@ -18,6 +18,7 @@ void execute_command(sh_data_t *data);
 void execute_pipe_next(sh_data_t *data);
 bool can_execute_bin(char *path);
 void check_execution(sh_data_t *data);
+void handle_pid(sh_data_t *data, int status);
 
 void execute_binary(sh_data_t *data, char *path)
 {
@@ -27,6 +28,7 @@ void execute_binary(sh_data_t *data, char *path)
         exit(84);
     if (data->child_pid == 0) {
         signal(SIGINT, SIG_DFL);
+        signal(SIGTSTP, SIG_DFL);
         execute_pipe_next(data);
         dup2(data->current_command->write_fd, 1);
         dup2(data->current_command->read_fd, 0);
@@ -38,8 +40,7 @@ void execute_binary(sh_data_t *data, char *path)
         }
         exit(0);
     }
-    wait(&status);
-    binary_error(data, status);
+    handle_pid(data, status);
 }
 
 int execute_path_command(sh_data_t *data, char *path)

@@ -56,6 +56,9 @@
     // builtin/repeat.c
     int builtin_repeat(sh_data_t *data);
 
+    //builtin/fg.c
+    int job_control(sh_data_t *data);
+
     /*
     Execution
     */
