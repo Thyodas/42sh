@@ -14,6 +14,7 @@ char *clean_str(char *str);
 char *reformat(char *str);
 char **dup_array(char **array);
 void close_dup(int a, int b);
+void binary_error(sh_data_t *data, int status);
 
 static char *read_fd(int fd)
 {
@@ -35,9 +36,10 @@ static char *read_fd(int fd)
     return (str);
 }
 
-static char *sheitan_part(sh_data_t *data, char *cmd, int old_out, int fd[2])
+static char *sheitan_part(sh_data_t *data, char *cmd, int fd[2])
 {
     char *buffer;
+    int status = 0;
 
     int pid = fork();
     if (pid == 0) {
@@ -45,26 +47,27 @@ static char *sheitan_part(sh_data_t *data, char *cmd, int old_out, int fd[2])
         dup2(fd[1], 1);
         parse_current_line(data, cmd);
         close(fd[1]);
-        exit(0);
+        exit(data->last_exit_status);
     } else {
         close(fd[1]);
         buffer = read_fd(fd[0]);
         close(fd[0]);
     }
+    waitpid(pid, &status, 0);
+    binary_error(data, status);
     return (buffer);
 }
 
 char *get_backticks_value(sh_data_t *data, char *cmd)
 {
     int fd[2];
-    int old_out = dup(STDOUT_FILENO);
     char *out;
 
     if (pipe(fd) == -1) {
         perror("pipe");
         exit(1);
     }
-    out = sheitan_part(data, cmd, old_out, fd);
+    out = sheitan_part(data, cmd, fd);
     return (out);
 }
 
@@ -83,7 +86,7 @@ static char *getbline(sh_data_t *data, char *cmd, char *first, char *second)
     return (my_strdup(res));
 }
 
-static int find_backticks(sh_data_t *data, char **oldlines, int i)
+static void find_backticks(sh_data_t *data, char **oldlines, int i)
 {
     char *cmd;
     char *cmd_end;
@@ -100,18 +103,14 @@ static int find_backticks(sh_data_t *data, char **oldlines, int i)
         }
         free(oldlines[i]);
         oldlines[i] = getbline(data, cmd, first, second);
-        return (data->last_exit_status);
     }
-    return (0);
 }
 
-int handle_backtick(sh_data_t *data)
+void handle_backtick(sh_data_t *data)
 {
     char **oldlines = dup_array(data->line);
-    int exit_status = 0;
 
     for (int i = 0; oldlines[i]; i++)
-        exit_status = find_backticks(data, oldlines, i);
+        find_backticks(data, oldlines, i);
     data->line = oldlines;
-    return (exit_status);
 }
