@@ -62,6 +62,8 @@
         char **envp;
         char **line;
         char ***alias;
+        char **history;
+        int history_index;
         char *old_pwd;
         char *old_path;
         int last_exit_status;
@@ -98,7 +100,8 @@
         {"which", &builtin_which},
         {"alias", &builtin_alias},
         {"repeat", &builtin_repeat},
-        {"fg", &job_control}
+        {"fg", &job_control},
+        {"history", &builtin_history}
     };
 
     #define BUILTIN_NB (sizeof(BUILTIN_JUMP_TABLE) / sizeof(builtin_t))
