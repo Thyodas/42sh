@@ -18,6 +18,7 @@ SRC = src/main.c \
 	  src/execution/io/retrieve_io.c \
 	  src/execution/io/heredoc.c \
 	  src/execution/io/pipe.c \
+	  src/execution/readfd.c \
 	  src/execution/exec_utils.c \
 	  src/builtin/cd.c \
 	  src/builtin/set.c \
@@ -45,6 +46,7 @@ SRC = src/main.c \
 	  src/parser/alias_handler.c \
 	  src/parser/handle_match.c \
 	  src/parser/backticks.c \
+	  src/parser/my_strwa.c \
 	  src/parser/var_substitute.c \
 	  src/parser/handle_ascii_inhibitors.c \
 	  src/utils/array.c \

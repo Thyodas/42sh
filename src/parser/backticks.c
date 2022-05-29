@@ -9,32 +9,17 @@
 #include "my.h"
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
 
 char *clean_str(char *str);
 char *reformat(char *str);
 char **dup_array(char **array);
 void close_dup(int a, int b);
 void binary_error(sh_data_t *data, int status);
-
-static char *read_fd(int fd)
-{
-    char buf[1024] = {0};
-    int size;
-    int total_size = 0;
-    char *previous = NULL;
-    char *str = my_strdup("");
-
-    while ((size = read(fd, buf, 1024))) {
-        previous = str;
-        str = malloc(total_size + size + 1);
-        my_strncpy(str, previous, total_size);
-        my_strncpy(str + total_size, buf, size);
-        total_size += size;
-        str[total_size] = '\0';
-        free(previous);
-    }
-    return (str);
-}
+void extend_array(char ***array, char *new_line);
+char **my_stwa(char const *str, char div);
+void concat_in_array(char ***oldline, char **array, unsigned int *i);
+char *read_fd(int fd);
 
 static char *sheitan_part(sh_data_t *data, char *cmd, int fd[2])
 {
@@ -86,14 +71,15 @@ static char *getbline(sh_data_t *data, char *cmd, char *first, char *second)
     return (my_strdup(res));
 }
 
-static void find_backticks(sh_data_t *data, char **oldlines, int i)
+static void find_backticks(sh_data_t *data, char ***oldlines, unsigned int i)
 {
     char *cmd;
     char *cmd_end;
     char *first;
     char *second;
+    char **str;
 
-    first = my_strdup(oldlines[i]);
+    first = my_strdup((*oldlines)[i]);
     if ((cmd = my_strstr(first, "`"))) {
         cmd[0] = '\0';
         cmd = my_strdup(&cmd[1]);
@@ -101,8 +87,10 @@ static void find_backticks(sh_data_t *data, char **oldlines, int i)
             second = my_strlen(cmd_end) > 1 ? &cmd_end[1] : my_strdup("");
             cmd_end[0] = '\0';
         }
-        free(oldlines[i]);
-        oldlines[i] = getbline(data, cmd, first, second);
+        free((*oldlines)[i]);
+        (*oldlines)[i] = getbline(data, cmd, first, second);
+        str = my_stwa((*oldlines)[i], ' ');
+        concat_in_array(oldlines, str, &i);
     }
 }
 
@@ -110,7 +98,7 @@ void handle_backtick(sh_data_t *data)
 {
     char **oldlines = dup_array(data->line);
 
-    for (int i = 0; oldlines[i]; i++)
-        find_backticks(data, oldlines, i);
+    for (unsigned int i = 0; oldlines[i]; i++)
+        find_backticks(data, &oldlines, i);
     data->line = oldlines;
 }

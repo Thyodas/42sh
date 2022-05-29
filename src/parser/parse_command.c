@@ -109,7 +109,6 @@ static void parse_command_and_exec(sh_data_t *data, int len)
 void parse_current_line(sh_data_t *data, char *line)
 {
     char status[10];
-
     data->last_exit_status = 0;
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
         '\0' : line[my_strlen(line) - 1];

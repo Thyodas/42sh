@@ -30,8 +30,10 @@ char *reformat(char *str)
     char *res;
     int i = 0;
 
-    for (; str[i] != '\0'; i++)
+    for (; str[i] != '\0'; i++) {
         str[i] = str[i] == '\n' ? ' ' : str[i];
+        str[i] = str[i] == '\t' ? ' ' : str[i];
+    }
     str[i] = '\0';
     res = clean_str(str);
     return (res);
