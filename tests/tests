@@ -320,3 +320,14 @@ CLEAN=""
 TESTS=
   echo './wrong_archi'
 [935-END]
+
+[936]
+NAME="history_test"
+SETUP=""
+CLEAN=""
+TESTS=
+  echo 'history'
+  echo 'history -h'
+  echo 'history -r'
+  echo 'history -c'
+[936-END]

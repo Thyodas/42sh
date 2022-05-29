@@ -1,27 +1,22 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/jizen_yasashi/Epitech/Delivery/STG/B-PSU/B-PSU-210/B-PSU-210-STG-2-1-42sh-guillaume.hein'
 make -s 42sh
- 
 make[1]: Entering directory '/home/jizen_yasashi/Epitech/Delivery/STG/B-PSU/B-PSU-210/B-PSU-210-STG-2-1-42sh-guillaume.hein'
 make -C lib/my
- 
 echo "\033[1;37m\033[1;46m                   MINISHELL1\
                     \033[0m"
 echo "👉️ Compiling \033[1msrc/main.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/main.o src/main.c
- 
 echo "👉️ Compiling \033[1msrc/memory/mem_shell.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/memory/mem_shell.o src/memory/mem_shell.c
 echo "👉️ Compiling \033[1msrc/execution/command.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/command.o src/execution/command.c
- 
 echo "👉️ Compiling \033[1msrc/execution/env_utils.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/env_utils.o src/execution/env_utils.c
 echo "👉️ Compiling \033[1msrc/execution/signal.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/signal.o src/execution/signal.c
 echo "👉️ Compiling \033[1msrc/execution/builtin_utils.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/builtin_utils.o src/execution/builtin_utils.c
- 
 echo "👉️ Compiling \033[1msrc/execution/command_error.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/command_error.o src/execution/command_error.c
 echo "👉️ Compiling \033[1msrc/execution/prompt.c\033[0m"
@@ -30,43 +25,40 @@ echo "👉️ Compiling \033[1msrc/execution/io/retrieve_io.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/io/retrieve_io.o src/execution/io/retrieve_io.c
 echo "👉️ Compiling \033[1msrc/execution/io/heredoc.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/io/heredoc.o src/execution/io/heredoc.c
- 
 echo "👉️ Compiling \033[1msrc/execution/io/pipe.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/execution/io/pipe.o src/execution/io/pipe.c
 echo "👉️ Compiling \033[1msrc/builtin/cd.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/cd.o src/builtin/cd.c
- 
 echo "👉️ Compiling \033[1msrc/builtin/history.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/history.o src/builtin/history.c
 echo "👉️ Compiling \033[1msrc/builtin/setenv.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/setenv.o src/builtin/setenv.c
- 
 echo "👉️ Compiling \033[1msrc/builtin/exit.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/exit.o src/builtin/exit.c
 echo "👉️ Compiling \033[1msrc/builtin/unsetenv.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/unsetenv.o src/builtin/unsetenv.c
- 
 echo "👉️ Compiling \033[1msrc/builtin/env.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/builtin/env.o src/builtin/env.c
- 
 echo "👉️ Compiling \033[1msrc/parser/parse_line.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/parse_line.o src/parser/parse_line.c
 echo "👉️ Compiling \033[1msrc/parser/parse_command.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/parse_command.o src/parser/parse_command.c
- 
 echo "👉️ Compiling \033[1msrc/parser/token_handlers.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/token_handlers.o src/parser/token_handlers.c
 echo "👉️ Compiling \033[1msrc/parser/char_test.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/char_test.o src/parser/char_test.c
- 
 echo "👉️ Compiling \033[1msrc/parser/separator_handlers.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/separator_handlers.o src/parser/separator_handlers.c
- 
 echo "👉️ Compiling \033[1msrc/parser/parser_utils.c\033[0m"
 cc -Iinclude -Wall -Wextra -g -c -o src/parser/parser_utils.o src/parser/parser_utils.c
-gcc -g -o 42sh src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/history.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o -Llib/my -lmy
-rm -f src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/history.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o
+echo "👉️ Compiling \033[1msrc/history/history_flag.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/history/history_flag.o src/history/history_flag.c
+echo "👉️ Compiling \033[1msrc/history/utils.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/history/utils.o src/history/utils.c
+echo "👉️ Compiling \033[1msrc/history/write_some_txt.c\033[0m"
+cc -Iinclude -Wall -Wextra -g -c -o src/history/write_some_txt.o src/history/write_some_txt.c
+gcc -g -o 42sh src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/history.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/history/history_flag.o src/history/utils.o src/history/write_some_txt.o -Llib/my -lmy
+rm -f src/main.o src/memory/mem_shell.o src/execution/command.o src/execution/env_utils.o src/execution/signal.o src/execution/builtin_utils.o src/execution/command_error.o src/execution/prompt.o src/execution/io/retrieve_io.o src/execution/io/heredoc.o src/execution/io/pipe.o src/builtin/cd.o src/builtin/history.o src/builtin/setenv.o src/builtin/exit.o src/builtin/unsetenv.o src/builtin/env.o src/parser/parse_line.o src/parser/parse_command.o src/parser/token_handlers.o src/parser/char_test.o src/parser/separator_handlers.o src/parser/parser_utils.o src/history/history_flag.o src/history/utils.o src/history/write_some_txt.o
 make[1]: Leaving directory '/home/jizen_yasashi/Epitech/Delivery/STG/B-PSU/B-PSU-210/B-PSU-210-STG-2-1-42sh-guillaume.hein'
- 
 make: Leaving directory '/home/jizen_yasashi/Epitech/Delivery/STG/B-PSU/B-PSU-210/B-PSU-210-STG-2-1-42sh-guillaume.hein'
  

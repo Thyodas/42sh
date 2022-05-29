@@ -9,6 +9,9 @@
 #include "my_list.h"
 #include "my.h"
 #include "time.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 char **line_to_array(char const *str);
 void extend_array(char ***array, char *new_line);
@@ -29,6 +32,8 @@ int check_if_separator(char *str);
 special_token_t get_io_token(const special_token_t *token_list, char *str);
 char *remove_quote(char *str);
 char *history_maker(char **line, int length, int len, char *clock);
+char *history_make(char **line, int length, int len);
+char *command_time();
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -92,44 +97,6 @@ static void parse_command_and_exec(sh_data_t *data, int len)
             data->last_exit_status = 1;
         }
     }
-}
-
-char *my_itoa(int nb)
-{
-    int len = 0;
-    char *str = NULL;
-    int neg = (nb < 0) ? -1 : 1;
-
-    nb *= neg;
-    if (nb == 0)
-        return ("0");
-    for (int tmp = nb ; tmp > 0; ++len)
-        tmp /= 10;
-    str = malloc(sizeof(char) * (len + 1));
-    str[len] = '\0';
-    if (neg == -1)
-        str[0] = '-';
-    for (; len--; nb /= 10) {
-        if (neg == -1)
-            str[len + 1] = nb % 10  + '0';
-        else
-            str[len] = nb % 10  + '0';
-    }
-    return (str);
-}
-
-char *command_time()
-{
-    time_t rawtime = time(NULL);
-    struct tm *time_info = localtime(&rawtime);
-    char *clock = malloc(sizeof(char) * 8);
-    int hour = time_info->tm_hour;
-    int min = time_info->tm_min;
-    clock = my_strcat(clock, my_itoa(hour));
-    clock = my_strcat(clock, ":");
-    clock = my_strcat(clock, my_itoa(min));
-    clock = my_strcat(clock, "\t\0");
-    return clock;
 }
 
 void parse_current_line(sh_data_t *data, char *line)

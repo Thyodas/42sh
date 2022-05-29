@@ -9,6 +9,7 @@
 #include "shell.h"
 
 int history_flag(sh_data_t *data);
+int disp_history_n(sh_data_t *data, int n);;
 
 int my_nbrlen(int nb)
 {
@@ -21,12 +22,14 @@ int my_nbrlen(int nb)
 
 char *history_maker(char **line, int length, int len, char *clock)
 {
-    char *dest = malloc(sizeof(char) * (length + len + 2));
+    char *dest = malloc(sizeof(char) * (length + len + 2 + my_strlen(clock)));
+    int len_dest = 0;
 
-    dest = my_strcat(dest, clock);
+    sprintf(dest, "%s", clock);
+    len_dest = my_strlen(dest);
     for (int i = 0; line[i] != NULL; i++) {
-        dest = my_strcat(dest, line[i]);
-        dest = my_strcat(dest, " ");
+        sprintf(dest + len_dest, "%s ", line[i]);
+        len_dest = my_strlen(dest);
     }
     return dest;
 }
@@ -45,30 +48,6 @@ static int disp_history(sh_data_t *data)
             space = history_len - my_nbrlen(i) - 1;
         else
             space = history_len - my_nbrlen(i);
-        for (; space > 0; space--)
-            my_putchar(' ');
-        my_put_nbr(nbr + 1);
-        my_putchar('\t');
-        my_printf("%s\n", data->history[i]);
-    }
-    return 0;
-}
-
-static int disp_history_n(sh_data_t *data, int n)
-{
-    int len = 0;
-    int space = 1;
-    int history_len = 0;
-    int index = data->history_index;
-
-    for (;data->history[len] != NULL; len++);
-    history_len = my_nbrlen(len);
-    int nbr = data->history_index - len;
-    for (int i = len - n; data->history[i] != NULL; i++, nbr++) {
-        if (i == 0)
-            space = history_len - my_nbrlen(i);
-        else
-            space = history_len - my_nbrlen(i) + 1;
         for (; space > 0; space--)
             my_putchar(' ');
         my_put_nbr(nbr + 1);

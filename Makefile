@@ -18,7 +18,6 @@ SRC = src/main.c \
 	  src/execution/io/pipe.c \
 	  src/builtin/cd.c \
 	  src/builtin/history.c \
-	  src/builtin/history_flag.c \
 	  src/builtin/setenv.c \
 	  src/builtin/exit.c \
 	  src/builtin/unsetenv.c \
@@ -28,7 +27,10 @@ SRC = src/main.c \
 	  src/parser/token_handlers.c \
 	  src/parser/char_test.c \
 	  src/parser/separator_handlers.c \
-	  src/parser/parser_utils.c
+	  src/parser/parser_utils.c \
+	  src/history/history_flag.c \
+	  src/history/utils.c \
+	  src/history/write_some_txt.c \
 
 OBJ = $(SRC:.c=.o)
 
