@@ -36,6 +36,9 @@ char *get_start_path(char **args)
 int get_max_depth(char *str)
 {
     int max_depth = 0;
+
+    if (str[0] == '\0')
+        return (max_depth);
     for (int i = 1; str[i] != 0; ++i) {
         if (str[i] == '/')
             max_depth++;
