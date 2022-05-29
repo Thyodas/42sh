@@ -100,7 +100,9 @@
         {"which", &builtin_which},
         {"alias", &builtin_alias},
         {"repeat", &builtin_repeat},
-        {"fg", &job_control},
+        {"fg", &fg},
+        {"jobs", &jobs},
+        {"kill", &kill_builtin},
         {"history", &builtin_history}
     };
 

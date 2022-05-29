@@ -34,6 +34,9 @@ SRC = src/main.c \
 	  src/builtin/alias.c \
 	  src/builtin/repeat.c \
 	  src/builtin/fg.c \
+	  src/builtin/jobs.c \
+	  src/builtin/kill.c \
+	  src/builtin/utils/utils_jobs.c \
 	  src/parser/parse_line.c \
 	  src/parser/parse_command.c \
 	  src/parser/token_handlers.c \
