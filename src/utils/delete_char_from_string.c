@@ -13,7 +13,11 @@ char *init_str(int size);
 char *delete_char_from_string(char *str, int pos)
 {
     int len = my_strlen(str);
-    char *new_str = init_str(len - 1);
+    char *new_str;
+    if (len <= 1)
+        new_str = init_str(1);
+    else
+        new_str = init_str(len - 1);
     my_strncpy(new_str, str, pos);
     if (my_strlen(new_str) < len - 1)
         my_strcat(new_str, &str[pos + 1]);
