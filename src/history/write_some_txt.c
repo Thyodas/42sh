@@ -9,7 +9,7 @@
 #include <time.h>
 #include <my.h>
 
-void writeFile(const char *filename, char *txt) //TODO writeFile
+void write_file(const char *filename, char *txt)
 {
     int len = my_strlen(txt);
     char *buffer = malloc(sizeof(char) * len);
@@ -18,20 +18,20 @@ void writeFile(const char *filename, char *txt) //TODO writeFile
 
     if (stream == NULL) {
         fprintf(stderr, "Cannot open file for writing\n");
-        exit( -1 );
+        exit(-1);
     }
     sprintf(buffer, "%s", txt);
     size_t size = my_strlen(txt);
     if (fwrite(buffer, size, 1, stream) != 1)
-        fprintf(stderr, "Cannot write block in file\n" );
+        fprintf(stderr, "Cannot write block in file\n");
     return_code = fclose(stream);
     if (return_code == EOF) {
-        fprintf(stderr, "Cannot close file\n" );
+        fprintf(stderr, "Cannot close file\n");
         exit(-1);
     }
 }
 
-char *command_time() //TODO void
+char *command_time(void)
 {
     time_t rawtime = time(NULL);
     struct tm *time_info = localtime(&rawtime);

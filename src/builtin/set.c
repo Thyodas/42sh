@@ -22,7 +22,7 @@ char *remove_line_spaces(sh_data_t *data, int *i)
                 my_strlen(data->current_command->argv[*i + 1]) +
                 my_strlen(data->current_command->argv[*i + 2]);
             cmd = malloc(sizeof(char) * (len + 1));
-            for (int j = 0; j < len; cmd[j] = 0, j++);
+            memset(cmd, 0, len + 1);
             cmd = my_strcat(cmd, data->current_command->argv[*i]);
             cmd = my_strcat(cmd, data->current_command->argv[*i + 1]);
             cmd = my_strcat(cmd, data->current_command->argv[*i + 2]);

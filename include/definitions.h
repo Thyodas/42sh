@@ -59,13 +59,13 @@
     // builtin/alias.c
     int builtin_alias(sh_data_t *data);
 
-    //builtin/fg.c
+    // builtin/fg.c
     int fg(sh_data_t *data);
 
-    //builtin/jobs.c
+    // builtin/jobs.c
     int jobs(sh_data_t *data);
 
-    //builtin/kill.c
+    // builtin/kill.c
     int kill_builtin(sh_data_t *data);
 
     // builtin/history.c
