@@ -8,6 +8,10 @@
 #include "shell.h"
 #include "my_list.h"
 #include "my.h"
+#include "time.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 char **line_to_array(char const *str);
 void extend_array(char ***array, char *new_line);
@@ -33,6 +37,9 @@ int var_substitute(sh_data_t *data);
 int alias_handler(sh_data_t *data);
 void handle_backtick(sh_data_t *data);
 char *handle_ascii_inhib(char *str);
+char *history_maker(char **line, int length, int len, char *clock);
+char *history_make(char **line, int length, int len);
+char *command_time();
 
 static const special_token_t TOKEN_LIST[] = {
     {">>", 2, &handle_io_output_append},
@@ -109,6 +116,8 @@ static void parse_command_and_exec(sh_data_t *data, int len)
 void parse_current_line(sh_data_t *data, char *line)
 {
     char status[10];
+    char *last_command = my_strdup("");
+    char *time = command_time();
 
     data->last_exit_status = 0;
     line[my_strlen(line) - 1] = line[my_strlen(line) - 1] == '\n' ?
@@ -124,7 +133,14 @@ void parse_current_line(sh_data_t *data, char *line)
         return;
     }
     int len = 0;
-    for (; data->line[len] != NULL; len++);
+    int length = 0;
+    for (; data->line[len] != NULL; len++)
+        for (int i = 0; data->line[len][i] != '\0'; i++, length++);
+    length += len + 1;
+    length += my_strlen(time);
+    data->history_index++;
+    last_command = history_maker(data->line, length, len, time);
+    extend_array(&data->history, last_command);
     parse_command_and_exec(data, len);
     data->last_exit_status = data->last_exit_status == 0 ? backtick_status :
         data->last_exit_status;
