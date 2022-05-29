@@ -23,40 +23,6 @@ int(*ptr[])(sh_data_t *) = {
     //write_in_history_file,
 };
 
-/*char *second_time()
-{
-    time_t rawtime = time(NULL);
-    struct tm *time_info = localtime(&rawtime);
-    char *clock = malloc(sizeof(char) * 7);
-    int sec = time_info->tm_sec;
-    time_info->tm_year
-    int hour = time_info->tm_hour;
-    int min = time_info->tm_min;
-    if (hour < 10)
-        sprintf(clock, "0%d:", hour);
-    else
-        sprintf(clock, "%d:", hour);
-    if (min < 10)
-        sprintf(clock + my_strlen(clock), "0%d\t", min);
-    else
-        sprintf(clock + my_strlen(clock), "%d\t", min);
-    return clock;
-}
-
-int write_in_history_file(sh_data_t *data)
-{
-    char *txt = my_strdup("");
-    char *time_s = second_time();
-    int len = 0;
-    int length = data->history_index;
-
-    for (int i = 0; data->history[i] != NULL; i++)
-        for (int j = 0; data->history[i][j] != '\0'; j++, len ++);
-    
-    writeFile(data->current_command->argv[2], txt);
-    return 0;
-}*/
-
 int history_flag(sh_data_t *data)
 {
     char flag[] = {'c', 'h', 'r'};

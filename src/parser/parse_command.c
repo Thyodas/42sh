@@ -137,9 +137,9 @@ void parse_current_line(sh_data_t *data, char *line)
         for (int i = 0; data->line[len][i] != '\0'; i++, length++);
     length += len + 1;
     length += my_strlen(time);
+    data->history_index++;
     last_command = history_maker(data->line, length, len, time);
     extend_array(&data->history, last_command);
-    data->history_index++;
     parse_command_and_exec(data, len);
     if (data->last_exit_status == 0)
         data->last_exit_status = backticks_exit_status;
